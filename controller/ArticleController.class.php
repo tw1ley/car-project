@@ -8,7 +8,7 @@ class ArticleController extends \App\A\Controller
 {
     public function process($parms) {
         $articleManager = new \App\Model\ArticleManager();
-        $article = $articleManager->getArticle($parms[0]);
+        $article = $articleManager->getOne($parms[0]);
 
         if (!$article) {
             $this->redirect('error');

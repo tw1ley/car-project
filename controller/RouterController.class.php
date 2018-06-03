@@ -6,17 +6,17 @@ namespace App\Controller;
 
 class RouterController extends \App\A\Controller
 {
-
     protected $controller;
 
     public function process($parms) {
-        $parsedUrl = $this->parseUrl($parms[0]);
+        $parsedUrl = $this->parseUrl($parms['uri']);
 
         // Redirect to home page when no adress is speciefied
         if (empty($parsedUrl[0])) {
-            $this->redirect('article/home');
+            $this->redirect('home');
         }
 
+        // Create name of controller
         $controllerClass = $this->dashesToCamel(array_shift($parsedUrl)).'Controller';
 
         // Check if controller exists, if not redirect to error page
@@ -28,8 +28,14 @@ class RouterController extends \App\A\Controller
         }
 
         $this->controller->process($parsedUrl);
+
+        $this->data['base'] = $this->controller->data['base'] = locationBase();
+        $this->data['url']  = $this->controller->data['url']  = locationUrl();
+        $this->data['href'] = $this->controller->data['href'] = locationHref();
+
         $this->data['title'] = $this->controller->head['title'];
         $this->data['description'] = $this->controller->head['description'];
+
         $this->view = 'index';
     }
 
@@ -47,5 +53,4 @@ class RouterController extends \App\A\Controller
 
         return $text;
     }
-
 }

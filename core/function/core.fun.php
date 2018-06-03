@@ -1,41 +1,47 @@
 <?php
 
-function autoloadFunction($class) {
-    $file = '';
-    $preg = array(
-        'interface' => 'App\\I\\',
-        'abstract' => 'App\\A\\',
-        'class' => 'App\\C\\',
-        'exception' => 'App\\E\\',
-        'controller' => 'App\\Controller\\',
-        'model' => 'App\\Model\\'
-    );
+# ======================================================================================================= #
 
-    foreach ($preg as $type => $namespace) {
-        if (preg_match('/^'.preg_quote($namespace).'/', $class)) {
-            $file = str_replace($namespace, '', $class);
-            break;
-        }
-    }
+function genUrlKey($id, $string, $table) {
+    $key = preg_replace('/[^A-Za-z0-9-]+/', '-', strtolower($string));
 
-    if ($type && $file) {
-        switch ($type) {
-            case 'interface'  : require_once INT_DIR.$file.INT_EXT; break;
-            case 'abstract'   : require_once ABS_DIR.$file.ABS_EXT; break;
-            case 'class'      : require_once CLASS_DIR.$file.CLASS_EXT; break;
-            case 'exception'  : require_once EXC_DIR.$file.EXC_EXT; break;
-            case 'controller' : require_once CTRL_DIR.$file.CTRL_EXT; break;
-            case 'model'      : require_once MDL_DIR.$file.MDL_EXT; break;
-			default           : debug($class);
-        }
+    if (dbOne("SELECT `url` FROM `".$table."` WHERE `url` = ?", array($key))) {
+        return genUrlKey($id, $id.' '.$string, $table);
+    } else {
+        return $key;
     }
 }
+
+function locationBase() {
+    return (!empty($_SERVER['HTTPS']) ? 'https://' : 'http://').$_SERVER['HTTP_HOST'];
+}
+
+function locationUrl() {
+    return locationBase().explode('?', $_SERVER['REQUEST_URI'])[0];
+}
+
+function locationHref() {
+    $explode = explode('?', $_SERVER['REQUEST_URI'])[1];
+    return $explode ? $explode : '';
+}
+
+/**
+ * Simple debug function
+ *
+ */
 
 function debug($data) {
-    echo '<pre style="width:100%;padding:5px 15px;background:#eee;border:#ddd 2px solid;overflow:auto;box-sizing:border-box;" >';
-    highlight_string("<?php\n\$data = " . var_export($data, true) . ";\n?>");
-    echo '</pre>';
+    if (DEBUG) {
+        echo '<pre style="width:100%;padding:5px 15px;background:#eee;border:#ddd 2px solid;overflow:auto;box-sizing:border-box;" >';
+        highlight_string("<?php\n\$data = " . var_export($data, true) . ";\n?>");
+        echo '</pre>';
+    }
 }
+
+/**
+ * Function to load config data
+ *
+ */
 
 function getConfig() {
     global $config;
@@ -60,21 +66,4 @@ function getConfig() {
             return $pointer;
         }
     }
-}
-
-function dbConnect() {
-    $config = getConfig('database');
-    \App\Model\Database::connect($config['host'], $config['user'], $config['password'], $config['database']);
-}
-
-function dbArray($query, $parms = array()) {
-    return \App\Model\Database::getArray($query, $parms);
-}
-
-function dbRow($query, $parms = array()) {
-    return \App\Model\Database::getRow($query, $parms);
-}
-
-function dbOne($query, $parms = array()) {
-    return \App\Model\Database::getOne($query, $parms);
 }

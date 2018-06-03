@@ -4,16 +4,13 @@
 
 namespace App\Model;
 
-// Manages articles in the system
-class ArticleManager
+class ArticleManager implements \App\I\IGet
 {
-    // Returns an article from the database based on a URL
-    public function getArticle($url) {
+    public function getOne($url) {
         return dbRow('SELECT `id`, `title`, `content`, `url`, `description` FROM `article` WHERE `url` = ?', array($url));
     }
 
-    // Returns a list of all of the articles in the database
-    public function getArticles() {
+    public function getAll() {
         return dbArray('SELECT `id`, `title`, `url`, `description` FROM `article` ORDER BY `id` DESC');
     }
 }
