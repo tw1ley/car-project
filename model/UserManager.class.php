@@ -92,4 +92,18 @@ class UserManager
             setcookie(session_name(), '', time() - 42000, '/');
         }
     }
+
+    /**
+     * Magin method
+     * Get selected private values
+     *
+     */
+    public function __get($name) {
+        switch ($name) {
+            case 'userID' : {
+                return $this->$name;
+            } break;
+        }
+        return null;
+    }
 }

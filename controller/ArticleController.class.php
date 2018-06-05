@@ -14,10 +14,8 @@ class ArticleController extends \App\A\Controller
             $this->redirect('error');
         }
 
-        $this->head = array(
-            'title' => $article['title'],
-            'description' => $article['description'],
-        );
+        $this->head['title'] = $article['title'];
+        $this->head['description'] = $article['description'];
 
         $this->data['title'] = $article['title'];
         $this->data['content'] = $article['content'];

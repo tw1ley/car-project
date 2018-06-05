@@ -1,1 +1,32 @@
-<? debug($car); ?>
+<main class="wrapper" >
+    <div class="name" >
+        <h1><?=$car['name'];?></h1>
+    </div>
+    <div class="content" ><?=$_car['content'];?></div>
+    <div class="reserve" >
+        <?
+            if (!empty($error)) {
+                echo '<span style="color:red;" >'.$error.'</span>';
+            }
+        ?>
+        <form method="post" action="<?=$url;?>">
+            <table>
+                <tr>
+                    <td>
+                        <label for="date_from">OD</label>
+                        <input id="date_from" type="date" name="date[from]" value="" required />
+                    </td>
+                    <td>
+                        <label for="date_to">DO</label>
+                        <input id="date_to" type="date" name="date[to]" value="" required />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" >
+                        <input type="submit" name="car-form" value="Zarezerwuj" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</main>

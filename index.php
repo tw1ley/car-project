@@ -4,6 +4,8 @@ session_start();
 
 # ======================================================================================================= #
 
+define('DEBUG', true);
+
 define('DIR_SEP'   , '/');
 define('MAIN_DIR'  , __DIR__.DIR_SEP);
 define('CORE_DIR'  , MAIN_DIR.'core'.DIR_SEP);
@@ -21,8 +23,6 @@ define('FUN_DIR'   , CORE_DIR.'function'.DIR_SEP);			   /* == */   define('FUN_E
 define('CONF_DIR'  , CORE_DIR.'config'.DIR_SEP);			   /* == */   define('CONF_EXT'   , '.conf.php');
 
 # ======================================================================================================= #
-
-define('DEBUG', true);
 
 if (DEBUG) {
 	error_reporting(E_ERROR | E_WARNING | E_PARSE);

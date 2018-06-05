@@ -6,32 +6,48 @@ namespace App\Controller;
 
 class CarController extends \App\A\Controller
 {
+    private function processCar(&$parms, &$user) {
+        $carManager = new \App\Model\CarManager();
+
+        $this->data['car'] = $carManager->getOne($parms[0]);
+
+        if (!$this->data['car']) {
+            $this->redirect('error');
+        }
+
+        if (!empty($_POST['car-form']) && !empty($_POST['date']['from']) && !empty($_POST['date']['to'])) {
+            $result = $carManager->reserve($user->userID, $this->data['car']['id'], $_POST['date']['from'], $_POST['date']['to']);
+            if (!$result) {
+                $this->redirect('car/'.$this->data['car']['url'].'/error-add');
+            }
+        }
+
+        if (!empty($parms[1])) {
+            $this->data['error'] = $parms[1];
+        }
+
+        $this->head['tile'] = $this->data['car']['title'];
+        $this->head['description'] = $this->data['car']['description'];
+        $this->view = 'car';
+    }
+
+    private function processCars() {
+        $carManager = new \App\Model\CarManager();
+
+        $this->data['cars'] = $carManager->getAll();
+        $this->head['title'] = 'Car';
+        $this->head['description'] = 'Car';
+        $this->view = 'cars';
+    }
+
     public function process($parms) {
         if (!($user = $this->isLogged())) {
             $this->redirect('user/');
         }
-
-        $carManager = new \App\Model\CarManager();
         if (!empty($parms[0])) {
-            $car = $carManager->getOne($parms[0]);
-
-            if (!$car) {
-                $this->redirect('error');
-            }
-
-            $this->data['car'] = $car;
-            $this->head = array(
-                'title' => $car['title'],
-                'description' => $car['description'],
-            );
-            $this->view = 'car';
+            $this->processCar($parms, $user);
         } else {
-            $cars = $carManager->getAll();
-
-            $this->data['cars'] = $cars;
-            $this->head['title'] = 'Car';
-            $this->head['content'] = 'Car';
-            $this->view = 'cars';
+            $this->processCars();
         }
     }
 }
