@@ -12,10 +12,10 @@ function autoloadFunction($class) {
     $preg = array(
         'interface' => 'App\\I\\',
         'abstract' => 'App\\A\\',
-        'class' => 'App\\C\\',
-        'exception' => 'App\\E\\',
-        'controller' => 'App\\Controller\\',
-        'model' => 'App\\Model\\'
+        #'class' => 'App\\C\\',
+        #'exception' => 'App\\E\\',
+        'controller' => 'App\\C\\',
+        'model' => 'App\\M\\'
     );
 
     foreach ($preg as $type => $namespace) {
@@ -29,8 +29,8 @@ function autoloadFunction($class) {
         switch ($type) {
             case 'interface'  : require_once INT_DIR.$file.INT_EXT; break;
             case 'abstract'   : require_once ABS_DIR.$file.ABS_EXT; break;
-            case 'class'      : require_once CLASS_DIR.$file.CLASS_EXT; break;
-            case 'exception'  : require_once EXC_DIR.$file.EXC_EXT; break;
+            #case 'class'      : require_once CLASS_DIR.$file.CLASS_EXT; break;
+            #case 'exception'  : require_once EXC_DIR.$file.EXC_EXT; break;
             case 'controller' : require_once CTRL_DIR.$file.CTRL_EXT; break;
             case 'model'      : require_once MDL_DIR.$file.MDL_EXT; break;
 			default           : debug($class);

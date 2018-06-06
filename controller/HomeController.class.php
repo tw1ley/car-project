@@ -2,7 +2,7 @@
 
 # ======================================================================================================= #
 
-namespace App\Controller;
+namespace App\C;
 
 class HomeController extends \App\A\Controller
 {

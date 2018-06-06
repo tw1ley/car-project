@@ -2,7 +2,7 @@
 
 # ======================================================================================================= #
 
-namespace App\Controller;
+namespace App\C;
 
 class RouterController extends \App\A\Controller
 {
@@ -21,7 +21,7 @@ class RouterController extends \App\A\Controller
 
         // Check if controller exists, if not redirect to error page
         if (file_exists(CTRL_DIR.$controllerClass.CTRL_EXT)) {
-            $controllerClass = "\App\Controller\\$controllerClass";
+            $controllerClass = "\\App\\C\\$controllerClass";
             $this->controller = new $controllerClass();
         } else {
             $this->redirect('error');

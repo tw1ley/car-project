@@ -2,7 +2,7 @@
 
 # ======================================================================================================= #
 
-namespace App\Model;
+namespace App\M;
 
 class ArticleManager implements \App\I\IGet
 {

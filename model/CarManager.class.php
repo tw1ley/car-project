@@ -2,7 +2,7 @@
 
 # ======================================================================================================= #
 
-namespace App\Model;
+namespace App\M;
 
 class CarManager implements \App\I\IGet
 {
@@ -15,8 +15,8 @@ class CarManager implements \App\I\IGet
     }
 
     public function reserve($userID, $carID, $dateFrom, $dateTo) {
-        $dateFrom = new \App\Model\Date(date(\App\Model\Date::DATE_FORMAT, strtotime($dateFrom)));
-        $dateTo = new \App\Model\Date(date(\App\Model\Date::DATE_FORMAT, strtotime($dateTo)));
+        $dateFrom = new \App\M\Date(date(\App\M\Date::DATE_FORMAT, strtotime($dateFrom)));
+        $dateTo = new \App\M\Date(date(\App\M\Date::DATE_FORMAT, strtotime($dateTo)));
 
         //debug($userID);
         //debug($carID);

@@ -2,7 +2,7 @@
 
 # ======================================================================================================= #
 
-namespace App\Model;
+namespace App\M;
 
 use \DateTime;
 
@@ -12,6 +12,7 @@ class Date implements \App\I\IDate
     public const MONTH = 'm';
     public const DAY = 'd';
     public const DATE_FORMAT = self::DAY.'-'.self::MONTH.'-'.self::YEAR;
+    public const DATE_FORMAT_JS = 'DD-MM-YYYY';
 
     private $date = null;
     private $time = null;
@@ -36,7 +37,7 @@ class Date implements \App\I\IDate
         return ($t && date(self::DATE_FORMAT, $t) === $date);
     }
 
-    public function compareTo(\App\Model\Date $date) {
+    public function compareTo(\App\M\Date $date) {
         debug($date);
     }
 }

@@ -2,12 +2,12 @@
 
 # ======================================================================================================= #
 
-namespace App\Controller;
+namespace App\C;
 
 class CarController extends \App\A\Controller
 {
     private function processCar(&$parms, &$user) {
-        $carManager = new \App\Model\CarManager();
+        $carManager = new \App\M\CarManager();
 
         $this->data['car'] = $carManager->getOne($parms[0]);
 
@@ -32,7 +32,7 @@ class CarController extends \App\A\Controller
     }
 
     private function processCars() {
-        $carManager = new \App\Model\CarManager();
+        $carManager = new \App\M\CarManager();
 
         $this->data['cars'] = $carManager->getAll();
         $this->head['title'] = 'Car';

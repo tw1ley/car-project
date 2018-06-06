@@ -40,7 +40,7 @@ require_once FUN_DIR.'database'.FUN_EXT;
 
 dbConnect();
 
-$router = new \App\Controller\RouterController();
+$router = new \App\C\RouterController();
 $router->process(array('uri' => $_SERVER['REQUEST_URI']));
 $router->renderView();
 

@@ -48,7 +48,7 @@ abstract class Controller
     }
 
     public function isLogged() {
-        $user = new \App\Model\UserManager();
+        $user = new \App\M\UserManager();
         return $user->logged() ? $user : null;
     }
 }

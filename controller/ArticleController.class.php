@@ -2,12 +2,12 @@
 
 # ======================================================================================================= #
 
-namespace App\Controller;
+namespace App\C;
 
 class ArticleController extends \App\A\Controller
 {
     public function process($parms) {
-        $articleManager = new \App\Model\ArticleManager();
+        $articleManager = new \App\M\ArticleManager();
         $article = $articleManager->getOne($parms[0]);
 
         if (!$article) {
