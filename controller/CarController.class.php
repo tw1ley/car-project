@@ -16,16 +16,10 @@ class CarController extends \App\A\Controller
         }
 
         if (!empty($_POST['car-form']) && !empty($_POST['date']['from']) && !empty($_POST['date']['to'])) {
-            $result = $carManager->reserve($user->userID, $this->data['car']['id'], $_POST['date']['from'], $_POST['date']['to']);
-            if (!$result) {
-                $this->redirect('car/'.$this->data['car']['url'].'/error-add');
-            }
+            $result = $carManager->reserve($this->data['car']['id'], $user->userID, $_POST['date']['from'], $_POST['date']['to']);
         }
 
-        if (!empty($parms[1])) {
-            $this->data['error'] = $parms[1];
-        }
-
+        $this->data['reservations'] = $carManager->getReservations($this->data['car']['id']);
         $this->head['tile'] = $this->data['car']['title'];
         $this->head['description'] = $this->data['car']['description'];
         $this->view = 'car';

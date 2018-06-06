@@ -11,8 +11,7 @@ class Date implements \App\I\IDate
     public const YEAR = 'Y';
     public const MONTH = 'm';
     public const DAY = 'd';
-    public const DATE_FORMAT = self::DAY.'-'.self::MONTH.'-'.self::YEAR;
-    public const DATE_FORMAT_JS = 'DD-MM-YYYY';
+    public const DATE_FORMAT = self::YEAR.'-'.self::MONTH.'-'.self::DAY;
 
     private $date = null;
     private $time = null;
@@ -26,9 +25,9 @@ class Date implements \App\I\IDate
             $this->date  = $date;
             $this->time  = strtotime($date);
 
-            $this->year  = date(self::YEAR, $this->time);
-            $this->month = date(self::MONTH, $this->time);
-            $this->day   = date(self::DAY, $this->time);
+            $this->year  = (int) date(self::YEAR, $this->time);
+            $this->month = (int) date(self::MONTH, $this->time);
+            $this->day   = (int) date(self::DAY, $this->time);
         }
     }
 
@@ -37,7 +36,32 @@ class Date implements \App\I\IDate
         return ($t && date(self::DATE_FORMAT, $t) === $date);
     }
 
-    public function compareTo(\App\M\Date $date) {
-        debug($date);
+    public function isEqual(\App\M\Date $date) {
+        return $this->time == $date->time;
+    }
+
+    public function isAtLeastEqual(\App\M\Date $date) {
+        return $this->time <= $date->time;
+    }
+
+    public function isNull() {
+        return is_null($this->date);
+    }
+
+    /**
+     * Magin method
+     * Get selected private values
+     *
+     */
+    public function __get($name) {
+        switch ($name) {
+            case 'date' : {
+                return $this->date;
+            } break;
+            case 'time' : {
+                return $this->time;
+            }
+        }
+        return null;
     }
 }

@@ -3,6 +3,51 @@
         <h1><?=$car['name'];?></h1>
     </div>
     <div class="content" ><?=$_car['content'];?></div>
+    <? if(!empty($reservations)) { ?>
+        <div>
+            <style>
+                .tab {
+                    width: 100%;
+                    margin: 20px 0;
+                    border: #eee 1px solid;
+                }
+
+                .tab thead {
+                    border-bottom: #eee 1px solid;
+                }
+
+                .tab thead td {
+                    font-weight: 700;
+                }
+
+                .tab tbody td {
+
+                }
+
+                .tab td {
+                    padding: 5px;
+                }
+            </style>
+            <table class="tab">
+                <thead>
+                    <tr>
+                        <td>IMIĘ</td>
+                        <td>DATA OD</td>
+                        <td>DATA DO</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <? foreach ($reservations as $reservation) { ?>
+                        <tr>
+                            <td><?=$reservation['name'];?></td>
+                            <td><?=$reservation['date_from'];?></td>
+                            <td><?=$reservation['date_to'];?></td>
+                        </tr>
+                    <? } ?>
+                </tbody>
+            </table>
+        </div>
+    <? } ?>
     <div class="reserve" >
         <?
             if (!empty($error)) {
@@ -14,11 +59,11 @@
                 <tr>
                     <td>
                         <label for="date_from">OD</label>
-                        <input id="date_from" type="date" name="date[from]" value="" required />
+                        <input id="date_from" class="datepicker-here" type="text" name="date[from]" data-language='pl' required />
                     </td>
                     <td>
                         <label for="date_to">DO</label>
-                        <input id="date_to" type="date" name="date[to]" value="" required />
+                        <input id="date_to" class="datepicker-here" type="text" name="date[to]" data-language='pl' required />
                     </td>
                 </tr>
                 <tr>

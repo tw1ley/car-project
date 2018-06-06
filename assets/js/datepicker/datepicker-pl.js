@@ -6,7 +6,7 @@
     monthsShort: ['Sty', 'Lut', 'Mar', 'Kwi', 'Maj', 'Cze', 'Lip', 'Sie', 'Wrz', 'Paź', 'Lis', 'Gru'],
     today: 'Dzisiaj',
     clear: 'Wyczyść',
-    dateFormat: 'dd-mm-yyyy',
+    dateFormat: 'yyyy-mm-dd',
     timeFormat: 'hh:ii:aa',
     firstDay: 1
 };

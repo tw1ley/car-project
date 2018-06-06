@@ -6,6 +6,8 @@ namespace App\M;
 
 class UserManager
 {
+    public const USER_TABLE = 'user';
+
     private $userID = null;
     private $userType = null;
 
@@ -49,7 +51,7 @@ class UserManager
     public function login($login = '', $password = '') {
         if (!$this->logged()) {
             if (!empty($login) && is_string($login) && !empty($password) && is_string($password)) {
-                $user = dbRow("SELECT `id`, `login`, `password`, `type` FROM `user` WHERE `login` = ? LIMIT 1", array($login));
+                $user = dbRow("SELECT `id`, `login`, `password`, `type` FROM `".self::USER_TABLE."` WHERE `login` = ? LIMIT 1", array($login));
                 if ($user && self::passwordVerify($password, $user['password'])) {
                     $this->userID = $user['id'];
                     $this->userType = $user['type'];

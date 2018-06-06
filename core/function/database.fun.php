@@ -62,6 +62,16 @@
 
  /**
   * Function wrap for static class method
+  * Executes an SQL statement
+  *
+  */
+
+ function dbQuery($query, $parms = array()) {
+     return \App\M\Database::query($query, $parms);
+ }
+
+ /**
+  * Function wrap for static class method
   * Quotes a string for use in a query
   *
   */
