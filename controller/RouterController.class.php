@@ -29,12 +29,12 @@ class RouterController extends \App\A\Controller
 
         $this->controller->process($parsedUrl);
 
-        $this->data['base'] = $this->controller->data['base'] = locationBase();
-        $this->data['url']  = $this->controller->data['url']  = locationUrl();
-        $this->data['href'] = $this->controller->data['href'] = locationHref();
-
         $this->data['title'] = $this->controller->head['title'];
         $this->data['description'] = $this->controller->head['description'];
+
+        $this->data['core']['host'] = $this->controller->data['core']['host'] = $this->locationHost();
+        $this->data['core']['url']  = $this->controller->data['core']['url']  = $this->locationUrl();
+        $this->data['core']['href'] = $this->controller->data['core']['href'] = $this->locationHref();
 
         $this->view = 'index';
     }

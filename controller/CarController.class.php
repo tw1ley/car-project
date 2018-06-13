@@ -20,8 +20,10 @@ class CarController extends \App\A\Controller
         }
 
         $this->data['reservations'] = $carManager->getReservations($this->data['car']['id']);
+
         $this->head['tile'] = $this->data['car']['title'];
         $this->head['description'] = $this->data['car']['description'];
+
         $this->view = 'car';
     }
 
@@ -29,14 +31,16 @@ class CarController extends \App\A\Controller
         $carManager = new \App\M\CarManager();
 
         $this->data['cars'] = $carManager->getAll();
+
         $this->head['title'] = 'Car';
         $this->head['description'] = 'Car';
+
         $this->view = 'cars';
     }
 
     public function process($parms) {
         if (!($user = $this->isLogged())) {
-            $this->redirect('user/');
+            $this->redirect('user');
         }
         if (!empty($parms[0])) {
             $this->processCar($parms, $user);

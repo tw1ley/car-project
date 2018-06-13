@@ -1,1 +1,51 @@
-<? debug($cars); ?>
+
+<section id="banner_alternative_page">
+    <div class="wrapper">
+      <h1>Lista aut do wypożyczenia</h1>
+    </div>
+  </section>
+
+
+  <section id="brands">
+    <div class="wrapper">
+      <ul>
+        <li class="one"><img src="assets/img/ferrari.png" alt=""></li>
+        <li class="two"><img src="assets/img/audi.png" alt=""></li>
+        <li class="three"><img src="assets/img/honda.png" alt=""></li>
+        <li class="four"><img src="assets/img/infiniti.png" alt=""></li>
+        <li class="five"><img src="assets/img/lexus.png" alt=""></li>
+        <li class="six"><img src="assets/img/mbenz.png" alt=""></li>
+      </ul>
+    </div>
+  </section>
+
+
+  <section id="listing_page">
+    <div class="wrapper">
+      <div class="info">
+        <h3>Wybierz pojazd</h3>
+        <p>Wybierz interesujący Cię pojazd, a następnie przejdź przez krótką procedurę wypożyczenia.<br>Każdy pracownik naszej firmy ma możliwość wypożyczenia dowolnego auta za darmo.</p>
+      </div>
+      <div class="cars_container">
+      <?
+        if(!empty($cars)) {
+            foreach ($cars as $car) {
+            ?>
+                <div class="product_listing">
+                  <div class="product_listing_img">
+                    <img src="assets/img/listing_car.jpg" alt="image">
+                  </div>
+                  <div class="product_listing_content">
+                    <h4><?=$car['name'];?></h4>
+                    <a href="<?=$core['url'].$car['url'];?>" class="btn">Zobacz więcej <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                  </div>
+                </div>
+            <?
+            }
+        } else {
+            echo '<div class="message">BRAK</div>';
+        }
+      ?>
+      </div>
+    </div>
+  </section>

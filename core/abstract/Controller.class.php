@@ -51,4 +51,17 @@ abstract class Controller
         $user = new \App\M\UserManager();
         return $user->logged() ? $user : null;
     }
+
+    protected function locationHost() {
+        return (!empty($_SERVER['HTTPS']) ? 'https://' : 'http://').$_SERVER['HTTP_HOST'].'/';
+    }
+
+    protected function locationUrl() {
+        return rtrim($this->locationHost(), '/').explode('?', $_SERVER['REQUEST_URI'])[0];
+    }
+
+    protected function locationHref() {
+        $explode = explode('?', $_SERVER['REQUEST_URI'])[1];
+        return $explode ? $explode : '';
+    }
 }

@@ -2,7 +2,7 @@
 <html lang="pl">
 <head>
     <title><?=$title;?></title>
-    <base href="<?=$base;?>" />
+    <base href="<?=$core['host'];?>" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="<?=$description;?>" />
@@ -47,6 +47,12 @@
   </header>
 
   <? $this->controller->renderView(); ?>
+
+  <section id="contact">
+    <div class="wrapper">
+        <h3><a href="">Kliknij aby skontaktować się z nami</a></h3>
+    </div>
+  </section>
 
   <footer>
     <div class="footer-main">
