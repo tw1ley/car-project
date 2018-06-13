@@ -44,6 +44,10 @@ class Date implements \App\I\IDate
         return $this->time <= $date->time;
     }
 
+    public function isAtLeastToday() {
+        return $this->time >=strtotime(date(self::DATE_FORMAT));
+    }
+
     public function isNull() {
         return is_null($this->date);
     }

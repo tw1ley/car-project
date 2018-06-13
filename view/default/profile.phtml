@@ -26,28 +26,34 @@
           <img src="/assets/img/avatar.jpg" alt="avatar">
         </div>
         <div class="user-name">
-          <h4>Przykładowy użytkownik</h4>
-          <p>Duis vel convallis leo. Suspendisse purus mauris.</p>
+          <h4><?=$core['user']['information']['name'].' '.$core['user']['information']['surname'];?></h4>
+          <div>
+             <?=$_core['user']['information']['description'];?>
+          </div>
         </div>
       </div>
       <div class="user-details">
         <h4>Dane ogólne</h4>
         <form>
           <div class="form-group">
-            <label class="control-label">Imię i nazwisko</label>
-            <input class="form-control white_bg" name="fullname" value="Andrzej Nowak" id="fullname" type="text" required="" readonly="">
+            <label class="control-label">Imię</label>
+            <input class="form-control white_bg" name="name" value="<?=$core['user']['information']['name'];?>" id="fullname" type="text" required="" readonly="">
+          </div>
+          <div class="form-group">
+            <label class="control-label">Nazwisko</label>
+            <input class="form-control white_bg" name="surname" value="<?=$core['user']['information']['surname'];?>" id="fullname" type="text" required="" readonly="">
           </div>
           <div class="form-group">
             <label class="control-label">Email</label>
-            <input class="form-control white_bg" value="test@gmail.com" name="emailid" id="email" type="email" required="" readonly="">
+            <input class="form-control white_bg" value="<?=$core['user']['information']['email'];?>" name="emailid" id="email" type="email" required="" readonly="">
           </div>
           <div class="form-group">
             <label class="control-label">Numer telefonu</label>
-            <input class="form-control white_bg" name="mobilenumber" value="555555555" id="phone-number" type="text" required="" readonly="">
+            <input class="form-control white_bg" name="mobilenumber" value="<?=$core['user']['information']['phone'];?>" id="phone-number" type="text" required="" readonly="">
           </div>
           <div class="form-group">
             <label class="control-label">Miasto</label>
-            <input class="form-control white_bg" id="city" name="city" value="Poznań" type="text" readonly="">
+            <input class="form-control white_bg" id="city" name="city" value="<?=$core['user']['information']['city'];?>" type="text" readonly="">
           </div>
         </form>
         <a href="<?=$core['host'].'user/logout';?>">Wyloguj</a>

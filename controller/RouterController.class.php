@@ -29,12 +29,21 @@ class RouterController extends \App\A\Controller
 
         $this->controller->process($parsedUrl);
 
+        # === #
+
         $this->data['title'] = $this->controller->head['title'];
         $this->data['description'] = $this->controller->head['description'];
 
         $this->data['core']['host'] = $this->controller->data['core']['host'] = $this->locationHost();
         $this->data['core']['url']  = $this->controller->data['core']['url']  = $this->locationUrl();
         $this->data['core']['href'] = $this->controller->data['core']['href'] = $this->locationHref();
+
+        $this->data['core']['user'] = $this->controller->data['core']['user'] = null;
+        if (($user = $this->isLogged())) {
+            $this->data['core']['user']['id'] = $this->controller->data['core']['user']['id'] = $user->userID;
+            $this->data['core']['user']['type'] = $this->controller->data['core']['user']['type'] = $user->userType;
+            $this->data['core']['user']['information'] = $this->controller->data['core']['user']['information'] = $user->information();
+        }
 
         $this->view = 'index';
     }
@@ -43,7 +52,7 @@ class RouterController extends \App\A\Controller
         $parsedUrl = parse_url($url);
         $parsedUrl['path'] = trim(ltrim($parsedUrl['path'], '/'));
 
-        return explode('/', $parsedUrl['path']);
+        return array_filter(explode('/', $parsedUrl['path']));
     }
 
     private function dashesToCamel($text) {

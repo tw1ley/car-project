@@ -34,14 +34,16 @@
                         <td>IMIĘ</td>
                         <td>DATA OD</td>
                         <td>DATA DO</td>
+                        <td>AKCJE</td>
                     </tr>
                 </thead>
                 <tbody>
                     <? foreach ($reservations as $reservation) { ?>
                         <tr>
-                            <td><?=$reservation['name'];?></td>
+                            <td><?=$reservation['uname'];?></td>
                             <td><?=$reservation['date_from'];?></td>
                             <td><?=$reservation['date_to'];?></td>
+                            <td><?=($reservation['deletable'] && $reservation['uid'] == $core['user']['id']) ? '<a href="'.$core['url'].'?delete='.(int) $reservation['rid'].'" >Usuń</a>' : 'TRWA';?></td>
                         </tr>
                     <? } ?>
                 </tbody>

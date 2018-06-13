@@ -53,11 +53,11 @@ abstract class Controller
     }
 
     protected function locationHost() {
-        return (!empty($_SERVER['HTTPS']) ? 'https://' : 'http://').$_SERVER['HTTP_HOST'].'/';
+        return (!empty($_SERVER['HTTPS']) ? 'https://' : 'http://').rtrim($_SERVER['HTTP_HOST'], '/').'/';
     }
 
     protected function locationUrl() {
-        return rtrim($this->locationHost(), '/').explode('?', $_SERVER['REQUEST_URI'])[0];
+        return rtrim(rtrim($this->locationHost(), '/').explode('?', $_SERVER['REQUEST_URI'])[0], '/').'/';
     }
 
     protected function locationHref() {

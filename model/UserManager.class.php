@@ -96,6 +96,17 @@ class UserManager
     }
 
     /**
+     * Get all information from database
+     *
+     */
+
+     public function information() {
+         if ($this->logged()) {
+             return dbRow("SELECT `name`, `surname`, `email`, `phone`, `city`, `description` FROM `".self::USER_TABLE."` WHERE `id` = ".$this->userID);
+         }
+     }
+
+    /**
      * Magin method
      * Get selected private values
      *
@@ -103,7 +114,10 @@ class UserManager
     public function __get($name) {
         switch ($name) {
             case 'userID' : {
-                return $this->$name;
+                return $this->userID;
+            } break;
+            case 'userType' : {
+                return $this->userType;
             } break;
         }
         return null;
