@@ -76,12 +76,21 @@
                 <input type="text" name="user[add][login]" value="<?=$post['user']['add']['login'];?>" required />
             </td>
         </tr>
-        <tr>
-            <td>Hasło</td>
-            <td>
-                <input type="text" name="user[add][password]" value="<?=$post['user']['add']['password'];?>" required />
-            </td>
-        </tr>
+        <? if (empty($post['user']['add']['id'])) { ?>
+            <tr>
+                <td>Hasło</td>
+                <td>
+                    <input type="text" name="user[add][password]" value="<?=$post['user']['add']['password'];?>" required />
+                </td>
+            </tr>
+        <? } else { ?>
+            <tr>
+                <td>Nowe Hasło</td>
+                <td>
+                    <input type="text" name="user[add][new_password]" value="" required />
+                </td>
+            </tr>
+        <? } ?>
         <tr>
             <td colspan="2">
                 <textarea id="textarea" name="user[add][description]" required>

@@ -21,11 +21,18 @@
         }
 
         .table__thead {
+            height: 50px;
             border-bottom: #eee 2px solid
         }
 
         .table__thead .table__menu {
             text-align: center;
+            padding: 0 5px;
+        }
+
+        .table__thead .table__content {
+            text-align: right;
+            padding: 0 5px;
         }
 
         .table__tbody .table__content {
@@ -73,7 +80,9 @@
                 <thead class="table__thead">
                     <tr>
                         <td class="table__menu">Menu</td>
-                        <td class="table__content"></td>
+                        <td class="table__content">
+                            <a href="<?=$core['host'];?>" >Powrót</a>
+                        </td>
                     </tr>
                 </thead>
                 <tbody class="table__tbody">
@@ -81,7 +90,7 @@
                         <td class="table__menu">
                             <ul>
                                 <li>
-                                    <a href="" >Main Page</a>
+                                    <a href="" >Strona Główna</a>
                                 </li>
                                 <li>
                                     <a href="user" >Użytkownicy</a>
