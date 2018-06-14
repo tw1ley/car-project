@@ -2,10 +2,12 @@
 
 # ======================================================================================================= #
 
-namespace App\Model;
+namespace App\M;
 
 class UserManager
 {
+    public const USER_TABLE = 'user';
+
     private $userID = null;
     private $userType = null;
 
@@ -15,7 +17,7 @@ class UserManager
      * Static method used to encrypt password
      *
      */
-    private static function passwordEncode($password = '') {
+    public static function passwordEncode($password = '') {
         return password_hash($password, PASSWORD_BCRYPT);
     }
 
@@ -49,7 +51,7 @@ class UserManager
     public function login($login = '', $password = '') {
         if (!$this->logged()) {
             if (!empty($login) && is_string($login) && !empty($password) && is_string($password)) {
-                $user = dbRow("SELECT `id`, `login`, `password`, `type` FROM `user` WHERE `login` = ? LIMIT 1", array($login));
+                $user = dbRow("SELECT `id`, `login`, `password`, `type` FROM `".self::USER_TABLE."` WHERE `login` = ? LIMIT 1", array($login));
                 if ($user && self::passwordVerify($password, $user['password'])) {
                     $this->userID = $user['id'];
                     $this->userType = $user['type'];
@@ -91,5 +93,33 @@ class UserManager
             session_destroy();
             setcookie(session_name(), '', time() - 42000, '/');
         }
+    }
+
+    /**
+     * Get all information from database
+     *
+     */
+
+     public function information() {
+         if ($this->logged()) {
+             return dbRow("SELECT `name`, `surname`, `email`, `phone`, `city`, `description` FROM `".self::USER_TABLE."` WHERE `id` = ".$this->userID);
+         }
+     }
+
+    /**
+     * Magin method
+     * Get selected private values
+     *
+     */
+    public function __get($name) {
+        switch ($name) {
+            case 'userID' : {
+                return $this->userID;
+            } break;
+            case 'userType' : {
+                return $this->userType;
+            } break;
+        }
+        return null;
     }
 }

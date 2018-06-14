@@ -1,0 +1,84 @@
+<table class="subtable">
+    <thead>
+        <tr>
+            <td>Lp.</td>
+            <td>Url</td>
+            <td>Tytuł [meta]</td>
+            <td>Opis [meta]</td>
+            <td>Nazwa</td>
+            <td>Akcja</td>
+        </tr>
+    </thead>
+    <tbody>
+        <? if ($cars) { ?>
+            <? foreach($cars as $key => $car) { ?>
+                <tr>
+                    <td><?=($key+1);?></td>
+                    <td><?=$car['url'];?></td>
+                    <td><?=$car['title'];?></td>
+                    <td><?=$car['description'];?></td>
+                    <td><?=$car['name'];?></td>
+                    <td>
+                        <?
+                            if (!empty($_GET['edit']) && $_GET['edit'] == $car['id']) {
+                                echo '<a href="car" >Zamknij</a>';
+                            } else {
+                                echo '<a href="car?edit='.$car['id'].'" >Edytuj</a>';
+                            }
+                        ?>
+                        <br/>
+                        <a href="car?delete=<?=$car['id'];?>" >Usuń</a>
+                    </td>
+                </tr>
+            <? } ?>
+        <? } ?>
+    </tbody>
+</table>
+<form method="post" action="<?=$core['url'];?>">
+    <table class="subtable subtable__add">
+        <tr>
+            <td>URL</td>
+            <td>
+                <input type="text" name="car[add][url]" value="<?=$post['car']['add']['url'];?>" required />
+            </td>
+        </tr>
+        <tr>
+            <td>Tytuł [meta]</td>
+            <td>
+                <input type="text" name="car[add][title]" value="<?=$post['car']['add']['title'];?>" required />
+            </td>
+        </tr>
+        <tr>
+            <td>Opis [meta]</td>
+            <td>
+                <input type="text" name="car[add][description]" value="<?=$post['car']['add']['description'];?>" required />
+            </td>
+        </tr>
+        <tr>
+            <td>Nazwa</td>
+            <td>
+                <input type="text" name="car[add][name]" value="<?=$post['car']['add']['name'];?>" required />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <textarea id="textarea" name="car[add][content]" required>
+                    <?=$_post['car']['add']['content'];?>
+                </textarea>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <?
+                    if (!empty($post['car']['add']['id'])) {
+                        echo '<input type="hidden" name="car[add][id]" value="'.$post['car']['add']['id'].'" required />';
+                    }
+                ?>
+                <input type="submit" name="car[form]" value="Zapisz" >
+            </td>
+        </tr>
+    </table>
+</form>
+<script>
+   CKEDITOR.replace('textarea');
+</script>

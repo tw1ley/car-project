@@ -1,0 +1,92 @@
+<table class="subtable">
+    <thead>
+        <tr>
+            <td>Lp.</td>
+            <td>Url</td>
+            <td>Alias</td>
+            <td>Tytuł [meta]</td>
+            <td>Opis [meta]</td>
+            <td>Nazwa</td>
+            <td>Akcja</td>
+        </tr>
+    </thead>
+    <tbody>
+        <? if ($articles) { ?>
+            <? foreach($articles as $key => $article) { ?>
+                <tr>
+                    <td><?=($key+1);?></td>
+                    <td><?=$article['url'];?></td>
+                    <td><?=$article['alias'];?></td>
+                    <td><?=$article['title'];?></td>
+                    <td><?=$article['description'];?></td>
+                    <td><?=$article['name'];?></td>
+                    <td>
+                        <?
+                            if (!empty($_GET['edit']) && $_GET['edit'] == $article['id']) {
+                                echo '<a href="article" >Zamknij</a>';
+                            } else {
+                                echo '<a href="article?edit='.$article['id'].'" >Edytuj</a>';
+                            }
+                        ?>
+                        <br/>
+                        <a href="article?delete=<?=$article['id'];?>" >Usuń</a>
+                    </td>
+                </tr>
+            <? } ?>
+        <? } ?>
+    </tbody>
+</table>
+<form method="post" action="<?=$core['url'];?>">
+    <table class="subtable subtable__add">
+        <tr>
+            <td>URL</td>
+            <td>
+                <input type="text" name="article[add][url]" value="<?=$post['article']['add']['url'];?>" required />
+            </td>
+        </tr>
+        <tr>
+            <td>Alias</td>
+            <td>
+                <input type="text" name="article[add][alias]" value="<?=$post['article']['add']['alias'];?>" />
+            </td>
+        </tr>
+        <tr>
+            <td>Tytuł [meta]</td>
+            <td>
+                <input type="text" name="article[add][title]" value="<?=$post['article']['add']['title'];?>" required />
+            </td>
+        </tr>
+        <tr>
+            <td>Opis [meta]</td>
+            <td>
+                <input type="text" name="article[add][description]" value="<?=$post['article']['add']['description'];?>" required />
+            </td>
+        </tr>
+        <tr>
+            <td>Nazwa</td>
+            <td>
+                <input type="text" name="article[add][name]" value="<?=$post['article']['add']['name'];?>" required />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <textarea id="textarea" name="article[add][content]" required>
+                    <?=$_post['article']['add']['content'];?>
+                </textarea>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <?
+                    if (!empty($post['article']['add']['id'])) {
+                        echo '<input type="hidden" name="article[add][id]" value="'.$post['article']['add']['id'].'" required />';
+                    }
+                ?>
+                <input type="submit" name="article[form]" value="Zapisz" >
+            </td>
+        </tr>
+    </table>
+</form>
+<script>
+   CKEDITOR.replace('textarea');
+</script>

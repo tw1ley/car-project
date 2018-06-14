@@ -2,24 +2,22 @@
 
 # ======================================================================================================= #
 
-namespace App\Controller;
+namespace App\C;
 
 class ArticleController extends \App\A\Controller
 {
     public function process($parms) {
-        $articleManager = new \App\Model\ArticleManager();
+        $articleManager = new \App\M\ArticleManager();
         $article = $articleManager->getOne($parms[0]);
 
         if (!$article) {
             $this->redirect('error');
         }
 
-        $this->head = array(
-            'title' => $article['title'],
-            'description' => $article['description'],
-        );
+        $this->head['title'] = $article['title'];
+        $this->head['description'] = $article['description'];
 
-        $this->data['title'] = $article['title'];
+        $this->data['name'] = $article['name'];
         $this->data['content'] = $article['content'];
 
         $this->view = 'article';

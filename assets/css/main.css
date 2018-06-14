@@ -352,7 +352,7 @@ header {
   .loginform-button:hover {
     color: #D91414; }
 
-nav {
+nav:not(.datepicker--nav) {
   position: fixed;
   width: 100%;
   line-height: 30px;
@@ -461,15 +461,68 @@ nav ul li a {
       background-color: #fff;
       color: #000; }
 
+#banner_alternative_page {
+  background: url("../img/banner_alternative_page.jpg") no-repeat;
+  background-size: cover;
+  height: 300px;
+  text-align: center;
+  color: white;
+  overflow: hidden; }
+  #banner_alternative_page .wrapper {
+    width: 70%;
+    margin: 0 auto; }
+    #banner_alternative_page .wrapper h1 {
+      margin-top: 120px;
+      color: white; }
+
 #brands ul {
   margin: 0;
   padding: 25px 0;
   background: white;
+  display: -ms-grid;
   display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-columns: repeat(6, auto); }
+  #brands ul .one {
+    -ms-grid-column: 1;
+    -ms-grid-row: 1; }
+  #brands ul .two {
+    -ms-grid-column: 2;
+    -ms-grid-row: 1; }
+  #brands ul .three {
+    -ms-grid-column: 3;
+    -ms-grid-row: 1; }
+  #brands ul .four {
+    -ms-grid-column: 4;
+    -ms-grid-row: 1; }
+  #brands ul .five {
+    -ms-grid-column: 5;
+    -ms-grid-row: 1; }
+  #brands ul .six {
+    -ms-grid-column: 6;
+    -ms-grid-row: 1; }
   @media only screen and (max-width: 550px) {
     #brands ul {
-      grid-template-columns: repeat(3, auto); } }
+      -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: repeat(3, auto); }
+      #brands ul .one {
+        -ms-grid-column: 1;
+        -ms-grid-row: 1; }
+      #brands ul .two {
+        -ms-grid-column: 2;
+        -ms-grid-row: 1; }
+      #brands ul .three {
+        -ms-grid-column: 3;
+        -ms-grid-row: 1; }
+      #brands ul .four {
+        -ms-grid-column: 1;
+        -ms-grid-row: 2; }
+      #brands ul .five {
+        -ms-grid-column: 2;
+        -ms-grid-row: 2; }
+      #brands ul .six {
+        -ms-grid-column: 3;
+        -ms-grid-row: 2; } }
   #brands ul li {
     list-style: none;
     text-align: center; }
@@ -663,6 +716,74 @@ footer {
     .copyright a:hover {
       color: #00AEEF;
       transition: all 0.2s ease-in-out; }
+
+#listing_page {
+  text-align: center; }
+  #listing_page .info {
+    margin: 50px 0; }
+    #listing_page .info p {
+      font-size: 16px;
+      line-height: inherit; }
+  #listing_page .cars_container {
+    padding-bottom: 30px; }
+    #listing_page .cars_container .product_listing {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      border-width: 1px;
+      border-color: #d7d7d7;
+      border-style: solid;
+      background-color: #fafafa;
+      opacity: 0.98;
+      box-shadow: 0px 4px 17.64px 0.36px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      margin: 20px 0; }
+      @media only screen and (max-width: 550px) {
+        #listing_page .cars_container .product_listing {
+          flex-direction: column; } }
+      #listing_page .cars_container .product_listing .product_listing_img img {
+        width: 400px;
+        max-width: 100%;
+        background-size: cover;
+        margin: 10px 0 0 10px; }
+      #listing_page .cars_container .product_listing .product_listing_content {
+        padding: 20px 80px 0;
+        margin: 0 auto;
+        text-align: center; }
+        @media only screen and (max-width: 800px) {
+          #listing_page .cars_container .product_listing .product_listing_content {
+            padding-top: 10px; } }
+        @media only screen and (max-width: 550px) {
+          #listing_page .cars_container .product_listing .product_listing_content {
+            padding-top: 0;
+            padding-bottom: 20px; } }
+        #listing_page .cars_container .product_listing .product_listing_content .btn {
+          font-family: Roboto, sans-serif;
+          font-weight: bold;
+          font-size: 16px;
+          line-height: 32px;
+          color: #fff;
+          background-color: #50c1eb;
+          display: block;
+          width: 300px;
+          padding: 8px 30px;
+          border: 2px solid #fff;
+          border-radius: 2px;
+          transition: all 0.2s ease-in-out; }
+          #listing_page .cars_container .product_listing .product_listing_content .btn:hover {
+            color: #fff;
+            background-color: #263F8C; }
+          @media only screen and (max-width: 800px) {
+            #listing_page .cars_container .product_listing .product_listing_content .btn {
+              width: 200px; } }
+          #listing_page .cars_container .product_listing .product_listing_content .btn i {
+            font-size: 25px;
+            height: auto;
+            margin: 0;
+            line-height: 30px;
+            display: inline-block;
+            vertical-align: middle;
+            text-align: center; }
 
 .flex-video {
   height: 0;

@@ -6,8 +6,10 @@ namespace App\A;
 
 abstract class Controller
 {
-    protected $data = array();
     protected $view = '';
+    protected $viewCatalog = 'default';
+
+    protected $data = array();
     protected $head = array(
         'title' => '',
         'description' => ''
@@ -22,7 +24,7 @@ abstract class Controller
             // Create variables with prefix undescore which contain no escaped values
             extract($this->data, EXTR_PREFIX_ALL, "");
             // Include template
-            require VIEW_DIR.$this->view.VIEW_EXT;
+            require VIEW_DIR.$this->viewCatalog.DIR_SEP.$this->view.VIEW_EXT;
         }
     }
 
@@ -48,7 +50,27 @@ abstract class Controller
     }
 
     public function isLogged() {
-        $user = new \App\Model\UserManager();
+        $user = new \App\M\UserManager();
         return $user->logged() ? $user : null;
+    }
+
+    public function isAuth() {
+        if ($user = $this->isLogged()) {
+            return $user->userType == 1 ? $user : null;
+        }
+        return null;
+    }
+
+    protected function locationHost() {
+        return (!empty($_SERVER['HTTPS']) ? 'https://' : 'http://').rtrim($_SERVER['HTTP_HOST'], '/').'/';
+    }
+
+    protected function locationUrl() {
+        return rtrim(rtrim($this->locationHost(), '/').explode('?', $_SERVER['REQUEST_URI'])[0], '/').'/';
+    }
+
+    protected function locationHref() {
+        $explode = explode('?', $_SERVER['REQUEST_URI'])[1];
+        return $explode ? $explode : '';
     }
 }

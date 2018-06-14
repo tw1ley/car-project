@@ -2,7 +2,7 @@
 
 # ======================================================================================================= #
 
-namespace App\Model;
+namespace App\M;
 
 use \PDO;
 
@@ -72,11 +72,14 @@ class Database
     }
 
     /**
-     * Insert, Update, Delete query
+     * Executes an SQL statement
      *
      */
     public static function query($query, $parms = array()) {
-        return self::$connection->prepare($query)->execute($parms)->rowCount();
+        $result = self::$connection->prepare($query);
+        $result->execute($parms);
+
+        return $result->rowCount();
     }
 
     /**

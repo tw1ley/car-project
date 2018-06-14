@@ -2,15 +2,13 @@
 
 # ======================================================================================================= #
 
-namespace App\Controller;
+namespace App\C;
 
 class HomeController extends \App\A\Controller
 {
     public function process($parms) {
-        $this->head = array(
-            'title' => 'Home',
-            'description' => 'Home Page',
-        );
+        $this->head['title'] = 'Home';
+        $this->head['description'] = 'Home Page';
 
         $this->view = 'home';
     }

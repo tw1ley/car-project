@@ -2,6 +2,12 @@
 
 # ======================================================================================================= #
 
+/**
+ * Generate site key
+ * Probably will migrate to class
+ *
+ */
+
 function genUrlKey($id, $string, $table) {
     $key = preg_replace('/[^A-Za-z0-9-]+/', '-', strtolower($string));
 
@@ -12,19 +18,6 @@ function genUrlKey($id, $string, $table) {
     }
 }
 
-function locationBase() {
-    return (!empty($_SERVER['HTTPS']) ? 'https://' : 'http://').$_SERVER['HTTP_HOST'];
-}
-
-function locationUrl() {
-    return locationBase().explode('?', $_SERVER['REQUEST_URI'])[0];
-}
-
-function locationHref() {
-    $explode = explode('?', $_SERVER['REQUEST_URI'])[1];
-    return $explode ? $explode : '';
-}
-
 /**
  * Simple debug function
  *
@@ -32,7 +25,7 @@ function locationHref() {
 
 function debug($data) {
     if (DEBUG) {
-        echo '<pre style="width:100%;padding:5px 15px;background:#eee;border:#ddd 2px solid;overflow:auto;box-sizing:border-box;" >';
+        echo '<pre style="width:100%;text-align:left;padding:5px 15px;background:#eee;border:#ddd 2px solid;overflow:auto;box-sizing:border-box;" >';
         highlight_string("<?php\n\$data = " . var_export($data, true) . ";\n?>");
         echo '</pre>';
     }

@@ -12,7 +12,7 @@
      $config = getConfig('database');
 
      if (!empty($config['host']) && !empty($config['user']) && !empty($config['password']) && !empty($config['database'])) {
-         \App\Model\Database::connect($config['host'], $config['user'], $config['password'], $config['database']);
+         \App\M\Database::connect($config['host'], $config['user'], $config['password'], $config['database']);
      } else {
          debug('No Database config');
          die();
@@ -26,7 +26,7 @@
   */
 
  function dbClose() {
-      \App\Model\Database::close();
+      \App\M\Database::close();
       exit();
  }
 
@@ -37,7 +37,7 @@
   */
 
  function dbArray($query, $parms = array()) {
-     return \App\Model\Database::getArray($query, $parms);
+     return \App\M\Database::getArray($query, $parms);
  }
 
  /**
@@ -47,7 +47,7 @@
   */
 
  function dbRow($query, $parms = array()) {
-     return \App\Model\Database::getRow($query, $parms);
+     return \App\M\Database::getRow($query, $parms);
  }
 
  /**
@@ -57,7 +57,17 @@
   */
 
  function dbOne($query, $parms = array()) {
-     return \App\Model\Database::getOne($query, $parms);
+     return \App\M\Database::getOne($query, $parms);
+ }
+
+ /**
+  * Function wrap for static class method
+  * Executes an SQL statement
+  *
+  */
+
+ function dbQuery($query, $parms = array()) {
+     return \App\M\Database::query($query, $parms);
  }
 
  /**
@@ -67,5 +77,5 @@
   */
 
  function dbQuote($string) {
-     return \App\Model\Database::quote($string);
+     return \App\M\Database::quote($string);
  }

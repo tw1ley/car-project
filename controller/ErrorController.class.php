@@ -2,7 +2,7 @@
 
 # ======================================================================================================= #
 
-namespace App\Controller;
+namespace App\C;
 
 class ErrorController extends \App\A\Controller
 {

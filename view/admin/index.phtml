@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <title><?=$title;?></title>
+    <base href="<?=$core['host'];?>admin/" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="<?=$description;?>" />
+    <link rel="stylesheet" href="../assets/css/main.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link href="../assets/css/datepicker.min.css" rel="stylesheet" type="text/css">
+    <script src="../assets/plugin/ckeditor/ckeditor.js"/>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <style>
+        .table {
+            width: 100%;
+            height: 500px;
+            border-collapse: collapse;
+            border: #eee 2px solid;
+        }
+
+        .table__thead {
+            height: 50px;
+            border-bottom: #eee 2px solid
+        }
+
+        .table__thead .table__menu {
+            text-align: center;
+            padding: 0 5px;
+        }
+
+        .table__thead .table__content {
+            text-align: right;
+            padding: 0 5px;
+        }
+
+        .table__tbody .table__content {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .table__menu {
+            width: 15%;
+            border-right: #eee 2px solid;
+        }
+
+        .table__content {
+            width: 85%;
+        }
+
+        /* === */
+
+        .subtable {
+            width: 100%;
+            margin-bottom:25px;
+            border-collapse: collapse;
+        }
+        .subtable thead td {
+            font-weight: bold;
+        }
+        .subtable td {
+            padding: 5px;
+            border: #eee 1px solid;
+        }
+        .subtable td input {
+            width: 100%;
+        }
+
+        .subtable__add tbody tr td:first-child {
+            width: 100px;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div class="wrapper" >
+            <table class="table">
+                <thead class="table__thead">
+                    <tr>
+                        <td class="table__menu">Menu</td>
+                        <td class="table__content">
+                            <a href="<?=$core['host'];?>" >Powrót</a>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody class="table__tbody">
+                    <tr>
+                        <td class="table__menu">
+                            <ul>
+                                <li>
+                                    <a href="" >Strona Główna</a>
+                                </li>
+                                <li>
+                                    <a href="user" >Użytkownicy</a>
+                                </li>
+                                <li>
+                                    <a href="article" >Strony</a>
+                                </li>
+                                <li>
+                                    <a href="car" >Pojazdy</a>
+                                </li>
+                            </ul>
+                        </td>
+                        <td class="table__content">
+                            <? $this->controller->renderView(); ?>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</body>
+</html>

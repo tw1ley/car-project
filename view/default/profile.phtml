@@ -1,5 +1,62 @@
+<section id="banner_alternative_page">
+    <div class="wrapper">
+      <h1>Profil użytkownika</h1>
+    </div>
+  </section>
 
-<main class="wrapper" style="margin-top:50px;" >
-    profile
-    <a href="<?=locationBase().'/user/logout';?>">Wyloguj</a>
-</main>
+
+  <section id="brands">
+    <div class="wrapper">
+      <ul>
+        <li class="one"><img src="assets/img/ferrari.png" alt=""></li>
+        <li class="two"><img src="assets/img/audi.png" alt=""></li>
+        <li class="three"><img src="assets/img/honda.png" alt=""></li>
+        <li class="four"><img src="assets/img/infiniti.png" alt=""></li>
+        <li class="five"><img src="assets/img/lexus.png" alt=""></li>
+        <li class="six"><img src="assets/img/mbenz.png" alt=""></li>
+      </ul>
+    </div>
+  </section>
+
+
+  <section id="user_profile">
+    <div class="wrapper">
+      <div class="user-main">
+        <div class="user-avatar">
+          <img src="/assets/img/avatar.jpg" alt="avatar">
+        </div>
+        <div class="user-name">
+          <h4><?=$core['user']['information']['name'].' '.$core['user']['information']['surname'];?></h4>
+          <div>
+             <?=$_core['user']['information']['description'];?>
+          </div>
+        </div>
+      </div>
+      <div class="user-details">
+        <h4>Dane ogólne</h4>
+        <form>
+          <div class="form-group">
+            <label class="control-label">Imię</label>
+            <input class="form-control white_bg" name="name" value="<?=$core['user']['information']['name'];?>" id="name" type="text" required="" readonly="">
+          </div>
+          <div class="form-group">
+            <label class="control-label">Nazwisko</label>
+            <input class="form-control white_bg" name="surname" value="<?=$core['user']['information']['surname'];?>" id="surname" type="text" required="" readonly="">
+          </div>
+          <div class="form-group">
+            <label class="control-label">Email</label>
+            <input class="form-control white_bg" value="<?=$core['user']['information']['email'];?>" name="emailid" id="email" type="email" required="" readonly="">
+          </div>
+          <div class="form-group">
+            <label class="control-label">Numer telefonu</label>
+            <input class="form-control white_bg" name="mobilenumber" value="<?=$core['user']['information']['phone'];?>" id="phone-number" type="text" required="" readonly="">
+          </div>
+          <div class="form-group">
+            <label class="control-label">Miasto</label>
+            <input class="form-control white_bg" id="city" name="city" value="<?=$core['user']['information']['city'];?>" id="city" type="text" readonly="">
+          </div>
+        </form>
+        <a href="<?=$core['host'].'user/logout';?>">Wyloguj</a>
+      </div>
+    </div>
+  </section>

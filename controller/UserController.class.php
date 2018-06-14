@@ -2,7 +2,7 @@
 
 # ======================================================================================================= #
 
-namespace App\Controller;
+namespace App\C;
 
 class UserController extends \App\A\Controller
 {
@@ -19,11 +19,11 @@ class UserController extends \App\A\Controller
         # === #
         $this->data['login'] = '';
         if (!empty($_POST['login-form']) && !empty($_POST['login']['login']) && !empty($_POST['login']['password'])) {
-            $user = new \App\Model\UserManager();
+            $user = new \App\M\UserManager();
             if ($user->login($_POST['login']['login'], $_POST['login']['password'])) {
                 $this->redirect('user/profile');
             } else {
-                $this->data['login'] = $_POST['login']['login'];
+                $this->data['post']['login'] = $_POST['login']['login'];
             }
         }
         $this->head = array(
