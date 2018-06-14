@@ -82,8 +82,8 @@ class CarManager implements \App\I\IGet
                     dbQuery("INSERT INTO `".self::CAR_RESERVATION_TABLE."` (`id_car`, `id_user`, `date_from`, `date_to`) VALUES (:id_car, :id_user, :date_from, :date_to)", array(
                         'id_car' => $carID,
                         'id_user' => $userID,
-                        'date_from' => $dateFrom,
-                        'date_to' => $dateTo
+                        'date_from' => $dateFrom->date,
+                        'date_to' => $dateTo->date
                     ));
                 }
             }

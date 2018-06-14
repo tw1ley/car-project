@@ -1,71 +1,78 @@
-<main class="wrapper" >
-    <div class="name" >
-        <h1><?=$car['name'];?></h1>
+<section id="banner_alternative_page">
+    <div class="wrapper">
+      <h1><?=$car['name'];?></h1>
     </div>
-    <div class="content" ><?=$_car['content'];?></div>
+  </section>
+
+
+  <section id="brands">
+    <div class="wrapper">
+      <ul>
+        <li class="one"><img src="assets/img/ferrari.png" alt=""></li>
+        <li class="two"><img src="assets/img/audi.png" alt=""></li>
+        <li class="three"><img src="assets/img/honda.png" alt=""></li>
+        <li class="four"><img src="assets/img/infiniti.png" alt=""></li>
+        <li class="five"><img src="assets/img/lexus.png" alt=""></li>
+        <li class="six"><img src="assets/img/mbenz.png" alt=""></li>
+      </ul>
+    </div>
+  </section>
+
+
+  <section id="car_details">
+    <div class="wrapper">
+    <div class="car-header">
+      <div class="car-image">
+        <img src="assets/img/car1.jpg" alt="car_image">
+      </div>
+      <div class="content" >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ipsum nisl, malesuada non est et, aliquam pulvinar risus. Donec eros lectus, egestas dapibus sagittis tempor, tincidunt vitae ex. Sed sodales, nulla a tempus placerat, massa mauris congue quam, et dapibus arcu mauris in massa. Nam cursus, sem ac semper accumsan, leo nisi bibendum tellus, eu venenatis neque tellus eget justo. Fusce ut odio rhoncus, tincidunt eros quis, posuere leo. In a tincidunt nisl, sit amet auctor justo. Morbi imperdiet congue dui quis dapibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Maecenas congue scelerisque enim vitae blandit. Sed ut placerat mi. Maecenas blandit arcu eget scelerisque vulputate. Nam neque risus, condimentum quis nisl non, dictum auctor tellus. Mauris condimentum ipsum velit, sed sodales est aliquam egestas. Etiam in condimentum tortor. Curabitur volutpat mauris in pellentesque luctus. Maecenas tempus mauris a turpis euismod facilisis.</div>
+    </div>
     <? if(!empty($reservations)) { ?>
         <div>
-            <style>
-                .tab {
-                    width: 100%;
-                    margin: 20px 0;
-                    border: #eee 1px solid;
-                }
-
-                .tab thead {
-                    border-bottom: #eee 1px solid;
-                }
-
-                .tab thead td {
-                    font-weight: 700;
-                }
-
-                .tab tbody td {
-
-                }
-
-                .tab td {
-                    padding: 5px;
-                }
-            </style>
-            <table class="tab">
-                <thead>
-                    <tr>
-                        <td>IMIĘ</td>
-                        <td>DATA OD</td>
-                        <td>DATA DO</td>
-                        <td>AKCJE</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <? foreach ($reservations as $reservation) { ?>
-                        <tr>
-                            <td><?=$reservation['uname'];?></td>
-                            <td><?=$reservation['date_from'];?></td>
-                            <td><?=$reservation['date_to'];?></td>
-                            <td><?=($reservation['deletable'] && $reservation['uid'] == $core['user']['id']) ? '<a href="'.$core['url'].'?delete='.(int) $reservation['rid'].'" >Usuń</a>' : 'TRWA';?></td>
-                        </tr>
-                    <? } ?>
-                </tbody>
-            </table>
+            <div class="reserve-table">
+              <h3>Zarezerwowane terminy:</h3>
+              <div class="tbl-header">
+                <table class="tab" cellpadding="0" cellspacing="0" border="0">
+                  <thead>
+                      <tr>
+                          <td>IMIĘ</td>
+                          <td>DATA OD</td>
+                          <td>DATA DO</td>
+                          <td>AKCJA</td>
+                      </tr>
+                  </thead>
+                </table>
+              </div>
+              <div class="tbl-content">
+                <table cellpadding="0" cellspacing="0" border="0">
+                  <tbody>
+                      <? foreach ($reservations as $reservation) { ?>
+                          <tr>
+                              <td><?=$reservation['uname'];?></td>
+                              <td><?=$reservation['date_from'];?></td>
+                              <td><?=$reservation['date_to'];?></td>
+                              <td><?=($reservation['deletable'] && $reservation['uid'] == $core['user']['id']) ? '<a href="'.$core['url'].'?delete='.(int) $reservation['rid'].'" >Usuń</a>' : 'TRWA';?></td>
+                          </tr>
+                      <? } ?>
+                  </tbody>
+              </table>
+            </div>
+            </div>
         </div>
     <? } ?>
     <div class="reserve" >
-        <?
-            if (!empty($error)) {
-                echo '<span style="color:red;" >'.$error.'</span>';
-            }
-        ?>
-        <form method="post" action="<?=$url;?>">
+      <h3>Zarezerwuj teraz</h3>
+      <p>Wybierz datę odbioru i oddania samochodu <?=$car['name'];?></p>
+        <form method="post" action="<?=$core['url'];?>">
             <table>
                 <tr>
                     <td>
-                        <label for="date_from">OD</label>
-                        <input id="date_from" class="datepicker-here" type="text" name="date[from]" data-language='pl' required />
+                        <label for="date_from">OD DNIA</label>
+                        <input id="date_from" class="datepicker-here dp-od" type="text" name="date[from]" data-language='pl' required />
                     </td>
                     <td>
-                        <label for="date_to">DO</label>
-                        <input id="date_to" class="datepicker-here" type="text" name="date[to]" data-language='pl' required />
+                        <label for="date_to">DO DNIA</label>
+                        <input id="date_to" class="datepicker-here dp-do" type="text" name="date[to]" data-language='pl' required />
                     </td>
                 </tr>
                 <tr>
@@ -76,4 +83,5 @@
             </table>
         </form>
     </div>
-</main>
+    </div>
+  </section>

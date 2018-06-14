@@ -2,14 +2,14 @@
 <html lang="pl">
 <head>
     <title><?=$title;?></title>
-    <base href="<?=$core['host'];?>" />
+    <base href="<?=$core['host'];?>">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="<?=$description;?>" />
+    <meta name="description" content="<?=$description;?>">
     <link rel="stylesheet" href="assets/css/main.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-    <link href="assets/css/datepicker.min.css" rel="stylesheet" type="text/css">
+    <link href="./assets/css/datepicker.min.css" rel="stylesheet" type="text/css">
     <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -19,13 +19,13 @@
   <header>
     <div class="panel-before-nav">
       <div class="logo">
-        <a href="#" class="logo"><svg width="166" height="32" viewBox="0 0 166 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <a href="<?=$core['host'];?>" class="logo"><svg width="166" height="32" viewBox="0 0 166 32" fill="none" xmlns="http://www.w3.org/2000/svg">
   <path d="M15.8311 17.9194H5.22803V31H4.09424V0.429688H13.8364C16.9019 0.429688 19.3374 1.22054 21.1431 2.80225C22.9627 4.38395 23.8726 6.53255 23.8726 9.24805C23.8726 11.3337 23.2217 13.1603 21.9199 14.728C20.6322 16.2817 18.9875 17.2476 16.9858 17.6255L25.1533 30.7061V31H23.9565L15.8311 17.9194ZM5.22803 16.7856H14.8652C17.2168 16.7856 19.1134 16.0718 20.5552 14.644C22.0109 13.2163 22.7388 11.4176 22.7388 9.24805C22.7388 6.86849 21.9339 4.99284 20.3242 3.62109C18.7285 2.24935 16.5379 1.56348 13.7524 1.56348H5.22803V16.7856ZM44.9249 15.8408H29.5978V29.8662H47.0665V31H28.464V0.429688H47.0665V1.56348H29.5978V14.707H44.9249V15.8408ZM71.1003 31H69.9665L50.2302 2.36133V31H49.0754V0.429688H50.2302L69.9665 29.0054V0.429688H71.1003V31ZM95.3651 1.56348H84.2372V31H83.1034V1.56348H71.9754V0.429688H95.3651V1.56348ZM119.378 20.8169C119.14 24.1063 117.922 26.6958 115.725 28.5854C113.541 30.4751 110.658 31.4199 107.074 31.4199C103.155 31.4199 100.068 30.1042 97.8149 27.4727C95.5753 24.8271 94.4555 21.2018 94.4555 16.5967V14.728C94.4555 11.7886 94.9734 9.19906 96.0093 6.95947C97.0451 4.71989 98.5218 3.00521 100.439 1.81543C102.371 0.611654 104.611 0.00976562 107.158 0.00976562C110.686 0.00976562 113.527 0.95459 115.683 2.84424C117.838 4.73389 119.084 7.38639 119.42 10.8018H113.121C112.967 8.82812 112.414 7.40039 111.462 6.51855C110.525 5.62272 109.09 5.1748 107.158 5.1748C105.059 5.1748 103.484 5.93066 102.434 7.44238C101.398 8.9401 100.866 11.2707 100.838 14.4341V16.7437C100.838 20.047 101.335 22.4616 102.329 23.9873C103.337 25.513 104.919 26.2759 107.074 26.2759C109.02 26.2759 110.469 25.835 111.42 24.9531C112.386 24.0573 112.939 22.6785 113.079 20.8169H119.378ZM136.903 24.7012H125.859L123.759 31H117.062L128.441 0.429688H134.278L145.721 31H139.024L136.903 24.7012ZM127.56 19.5991H135.202L131.36 8.15625L127.56 19.5991ZM156.884 19.8091H151.866V31H145.567V0.429688H156.926C160.537 0.429688 163.322 1.23454 165.282 2.84424C167.242 4.45394 168.222 6.72852 168.222 9.66797C168.222 11.7536 167.767 13.4963 166.857 14.896C165.961 16.2817 164.596 17.3875 162.763 18.2134L169.376 30.7061V31H162.616L156.884 19.8091ZM151.866 14.707H156.947C158.528 14.707 159.753 14.3081 160.621 13.5103C161.489 12.6984 161.923 11.5856 161.923 10.1719C161.923 8.73014 161.51 7.59635 160.684 6.77051C159.872 5.94466 158.619 5.53174 156.926 5.53174H151.866V14.707Z" transform="translate(-4)" fill="black"/>
   </svg>
   </a>
       </div>
       <div>
-        <a href="user" class="loginform-button" ><?=$core['user'] ? 'Profil' : 'Zaloguj';?></a>
+        <a href="user" class="loginform-button" >PANEL UŻYTKOWNIKA</a>
       </div>
     </div>
 
@@ -34,15 +34,20 @@
         <div class="menu-icon">
           <i class="fa fa-bars fa-2x"></i>
         </div>
-        <div class="menu">
-          <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">O nas</a></li>
-            <li><a href="#">Flota</a></li>
-            <li><a href="car">Pojazdy</a></li>
-            <li><a href="#loginform">Zaloguj / Rejestracja</a></li>
-          </ul>
-        </div>
+            <div class="menu">
+                <ul>
+                    <?
+                        if (!empty($menu)) {
+                            foreach ($menu as $site) {;
+                            ?>
+                                <li><a href="<?=$site['alias'] ? $site['alias'] : $site['url'];?>"><?=$site['name'];?></a></li>
+                            <?
+                            }
+                        }
+                    ?>
+                    <li><a href="user/profile">PANEL UŻYTKOWNIKA</a></li>
+                </ul>
+            </div>
       </nav>
   </header>
 
@@ -50,7 +55,7 @@
 
   <section id="contact">
     <div class="wrapper">
-        <h3><a href="">Kliknij aby skontaktować się z nami</a></h3>
+        <h3><a href="contact.html">Kliknij aby skontaktować się z nami</a></h3>
     </div>
   </section>
 
@@ -84,36 +89,50 @@
 
   <script>
 
-      $(document).ready(function() {
-        $(".menu-icon").on("click", function() {
-            $("nav ul").toggleClass("showing");
-        });
-      });
-
-      $(window).on("scroll", function() {
-        if($(window).scrollTop()) {
-          $('nav').addClass('black');
-      }
-        else {
-          $('nav').removeClass('black');
-        }
-      })
-
-    $("#toggle").click(function() {
-      $(this).toggleClass('on');
-      $("#resize").toggleClass("active");
+  $(document).ready(function() {
+    $(".menu-icon").on("click", function() {
+        $("nav ul").toggleClass("showing");
     });
+  });
+
+  $(window).on("scroll", function() {
+    if($(window).scrollTop()) {
+      $('nav').addClass('black');
+  }
+    else {
+      $('nav').removeClass('black');
+    }
+  })
+
+  $("#toggle").click(function() {
+    $(this).toggleClass('on');
+    $("#resize").toggleClass("active");
+  });
+
+  $(window).on("load resize ", function() {
+    var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();
+    $('.tbl-header').css({'padding-right':scrollWidth});
+  }).resize();
+
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+
+
   </script>
 
 
+  <script src="./assets/js/vendors.js"></script>
+  <script src="./assets/js/app.js"></script>
+  <script src="./assets/js/accordion.js"></script>
 
-
-  <script src="assets/js/vendors.js"></script>
-  <script src="assets/js/app.js"></script>
-  <script src="assets/js/accordion.js"></script>
-
-  <script src="assets/js/datepicker.min.js"></script>
-  <script src="assets/js/datepicker/datepicker-pl.js"></script>
-
+  <script src="./assets/js/datepicker.min.js"></script>
+  <script src="./assets/js/datepicker/datepicker-pl.js"></script>
 </body>
 </html>

@@ -17,7 +17,7 @@ class ArticleController extends \App\A\Controller
         $this->head['title'] = $article['title'];
         $this->head['description'] = $article['description'];
 
-        $this->data['title'] = $article['title'];
+        $this->data['name'] = $article['name'];
         $this->data['content'] = $article['content'];
 
         $this->view = 'article';

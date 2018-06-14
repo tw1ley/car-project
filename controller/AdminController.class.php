@@ -83,8 +83,9 @@ class AdminController extends \App\A\Controller
 
         if (!empty($_POST['article']['add']) && !empty($_POST['article']['form'])) {
             if (!empty($_POST['article']['add']['id'])) {
-                dbQuery("UPDATE `article` SET `url` = :url, `title` = :titile, `description` = :description, `name` = :name, `content` = :content WHERE `id` = :id", array(
+                dbQuery("UPDATE `article` SET `url` = :url, `alias` = :alias, `title` = :title, `description` = :description, `name` = :name, `content` = :content WHERE `id` = :id", array(
                     'url' => $_POST['article']['add']['url'],
+                    'alias' => $_POST['article']['add']['alias'],
                     'title' => $_POST['article']['add']['title'],
                     'description' => $_POST['article']['add']['description'],
                     'name' => $_POST['article']['add']['name'],
@@ -92,8 +93,9 @@ class AdminController extends \App\A\Controller
                     'id' => $_POST['article']['add']['id']
                 ));
             } else {
-                dbQuery("INSERT INTO `article` (`url`, `title`, `description`, `name`, `content`) VALUES (:url, :title, :description, :name, :content)", array(
+                dbQuery("INSERT INTO `article` (`url`, `alias`, `title`, `description`, `name`, `content`) VALUES (:url, :alias, :title, :description, :name, :content)", array(
                     'url' => $_POST['article']['add']['url'],
+                    'alias' => $_POST['article']['add']['alias'],
                     'title' => $_POST['article']['add']['title'],
                     'description' => $_POST['article']['add']['description'],
                     'name' => $_POST['article']['add']['name'],

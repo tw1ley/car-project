@@ -7,10 +7,20 @@ namespace App\M;
 class ArticleManager implements \App\I\IGet
 {
     public function getOne($url) {
-        return dbRow('SELECT `id`, `title`, `content`, `url`, `description` FROM `article` WHERE `url` = ?', array($url));
+        return dbRow('SELECT `id`, `url`, `alias`, `title`, `content`, `description`, `name`, `content` FROM `article` WHERE `url` = ?', array($url));
     }
 
     public function getAll() {
-        return dbArray('SELECT `id`, `title`, `url`, `description` FROM `article` ORDER BY `id` DESC');
+        return dbArray('SELECT `id`, `url`, `alias`, `name` FROM `article` ORDER BY `id`');
+    }
+
+    public function getMenu() {
+        $sites = $this->getAll();
+        if ($sites) {
+            foreach ($sites as $key => $site) {
+                $sites[$key]['url'] = 'article/'.$site['url'];
+            }
+        }
+        return $sites;
     }
 }

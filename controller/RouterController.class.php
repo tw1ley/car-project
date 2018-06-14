@@ -34,8 +34,13 @@ class RouterController extends \App\A\Controller
         $this->data['title'] = $this->controller->head['title'];
         $this->data['description'] = $this->controller->head['description'];
 
+        $article = new \App\M\ArticleManager();
+        $this->data['menu'] = $article->getMenu();
+
+        # === #
+
+        #$this->data['core']['base'] = $this->controller->data['core']['base'] = $this->locationHost();
         $this->data['core']['host'] = $this->controller->data['core']['host'] = $this->locationHost();
-        //$this->data['core']['base'] = $this->controller->data['core']['base'] = $this->locationHost();
         $this->data['core']['url']  = $this->controller->data['core']['url']  = $this->locationUrl();
         $this->data['core']['href'] = $this->controller->data['core']['href'] = $this->locationHref();
 

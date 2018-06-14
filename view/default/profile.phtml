@@ -37,11 +37,11 @@
         <form>
           <div class="form-group">
             <label class="control-label">Imię</label>
-            <input class="form-control white_bg" name="name" value="<?=$core['user']['information']['name'];?>" id="fullname" type="text" required="" readonly="">
+            <input class="form-control white_bg" name="name" value="<?=$core['user']['information']['name'];?>" id="name" type="text" required="" readonly="">
           </div>
           <div class="form-group">
             <label class="control-label">Nazwisko</label>
-            <input class="form-control white_bg" name="surname" value="<?=$core['user']['information']['surname'];?>" id="fullname" type="text" required="" readonly="">
+            <input class="form-control white_bg" name="surname" value="<?=$core['user']['information']['surname'];?>" id="surname" type="text" required="" readonly="">
           </div>
           <div class="form-group">
             <label class="control-label">Email</label>
@@ -53,7 +53,7 @@
           </div>
           <div class="form-group">
             <label class="control-label">Miasto</label>
-            <input class="form-control white_bg" id="city" name="city" value="<?=$core['user']['information']['city'];?>" type="text" readonly="">
+            <input class="form-control white_bg" id="city" name="city" value="<?=$core['user']['information']['city'];?>" id="city" type="text" readonly="">
           </div>
         </form>
         <a href="<?=$core['host'].'user/logout';?>">Wyloguj</a>

@@ -352,7 +352,7 @@ header {
   .loginform-button:hover {
     color: #D91414; }
 
-nav {
+nav:not(.datepicker--nav) {
   position: fixed;
   width: 100%;
   line-height: 30px;

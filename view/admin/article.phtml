@@ -3,6 +3,7 @@
         <tr>
             <td>Lp.</td>
             <td>Url</td>
+            <td>Alias</td>
             <td>Tytuł [meta]</td>
             <td>Opis [meta]</td>
             <td>Nazwa</td>
@@ -15,6 +16,7 @@
                 <tr>
                     <td><?=($key+1);?></td>
                     <td><?=$article['url'];?></td>
+                    <td><?=$article['alias'];?></td>
                     <td><?=$article['title'];?></td>
                     <td><?=$article['description'];?></td>
                     <td><?=$article['name'];?></td>
@@ -40,6 +42,12 @@
             <td>URL</td>
             <td>
                 <input type="text" name="article[add][url]" value="<?=$post['article']['add']['url'];?>" required />
+            </td>
+        </tr>
+        <tr>
+            <td>Alias</td>
+            <td>
+                <input type="text" name="article[add][alias]" value="<?=$post['article']['add']['alias'];?>" />
             </td>
         </tr>
         <tr>
