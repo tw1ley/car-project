@@ -18,7 +18,7 @@ class CarController extends \App\A\Controller
         # === #
 
         if (!empty($_POST['car-form']) && !empty($_POST['date']['from']) && !empty($_POST['date']['to'])) {
-            $result = $carManager->reserve($this->data['car']['id'], $user->userID, $_POST['date']['from'], $_POST['date']['to']);
+            $result = $carManager->setReservation($this->data['car']['id'], $user->userID, $_POST['date']['from'], $_POST['date']['to']);
             $this->redirect('car/'.$parms[0]);
         }
 
@@ -31,9 +31,7 @@ class CarController extends \App\A\Controller
 
         # === #
 
-        $this->data['reservations'] = $carManager->getReservations($this->data['car']['id']);
-
-        # === #
+        $this->data['reservations'] = $carManager->getReservations($this->data['car']['id'], null, true);
 
         $this->head['tile'] = $this->data['car']['title'];
         $this->head['description'] = $this->data['car']['description'];
@@ -46,8 +44,8 @@ class CarController extends \App\A\Controller
 
         $this->data['cars'] = $carManager->getAll();
 
-        $this->head['title'] = 'Car';
-        $this->head['description'] = 'Car';
+        $this->head['title'] = 'Lista aut';
+        $this->head['description'] = 'Lista dostępnych aut do wypożyczenia przez pracowników';
 
         $this->view = 'cars';
     }

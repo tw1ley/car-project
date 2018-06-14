@@ -17,7 +17,7 @@ class UserManager
      * Static method used to encrypt password
      *
      */
-    private static function passwordEncode($password = '') {
+    public static function passwordEncode($password = '') {
         return password_hash($password, PASSWORD_BCRYPT);
     }
 

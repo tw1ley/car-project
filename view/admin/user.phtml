@@ -1,0 +1,106 @@
+<table class="subtable">
+    <thead>
+        <tr>
+            <td>Lp.</td>
+            <td>Imię</td>
+            <td>Nazwisko</td>
+            <td>Email</td>
+            <td>Telefon</td>
+            <td>Miasto</td>
+            <td>Login</td>
+            <td>Akcja</td>
+        </tr>
+    </thead>
+    <tbody>
+        <? if ($users) { ?>
+            <? foreach($users as $key => $user) { ?>
+                <tr>
+                    <td><?=($key+1);?></td>
+                    <td><?=$user['name'];?></td>
+                    <td><?=$user['surname'];?></td>
+                    <td><?=$user['email'];?></td>
+                    <td><?=$user['phone'];?></td>
+                    <td><?=$user['city'];?></td>
+                    <td><?=$user['login'];?></td>
+                    <td>
+                        <?
+                            if (!empty($_GET['edit']) && $_GET['edit'] == $user['id']) {
+                                echo '<a href="user" >Zamknij</a>';
+                            } else {
+                                echo '<a href="user?edit='.$user['id'].'" >Edytuj</a>';
+                            }
+                        ?>
+                        <br/>
+                        <a href="user?delete=<?=$user['id'];?>" >Usuń</a>
+                    </td>
+                </tr>
+            <? } ?>
+        <? } ?>
+    </tbody>
+</table>
+<form method="post" action="<?=$core['url'];?>">
+    <table class="subtable subtable__add">
+        <tr>
+            <td>Imię</td>
+            <td>
+                <input type="text" name="user[add][name]" value="<?=$post['user']['add']['name'];?>" required />
+            </td>
+        </tr>
+        <tr>
+            <td>Nazwisko</td>
+            <td>
+                <input type="text" name="user[add][surname]" value="<?=$post['user']['add']['surname'];?>" required />
+            </td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>
+                <input type="text" name="user[add][email]" value="<?=$post['user']['add']['email'];?>" required />
+            </td>
+        </tr>
+        <tr>
+            <td>Telefon</td>
+            <td>
+                <input type="text" name="user[add][phone]" value="<?=$post['user']['add']['phone'];?>" required />
+            </td>
+        </tr>
+        <tr>
+            <td>Miasto</td>
+            <td>
+                <input type="text" name="user[add][city]" value="<?=$post['user']['add']['city'];?>" required />
+            </td>
+        </tr>
+        <tr>
+            <td>Login</td>
+            <td>
+                <input type="text" name="user[add][login]" value="<?=$post['user']['add']['login'];?>" required />
+            </td>
+        </tr>
+        <tr>
+            <td>Hasło</td>
+            <td>
+                <input type="text" name="user[add][password]" value="<?=$post['user']['add']['password'];?>" required />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <textarea id="textarea" name="user[add][description]" required>
+                    <?=$_post['user']['add']['description'];?>
+                </textarea>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <?
+                    if (!empty($post['user']['add']['id'])) {
+                        echo '<input type="hidden" name="user[add][id]" value="'.$post['user']['add']['id'].'" required />';
+                    }
+                ?>
+                <input type="submit" name="user[form]" value="Zapisz" >
+            </td>
+        </tr>
+    </table>
+</form>
+<script>
+   CKEDITOR.replace('textarea');
+</script>
