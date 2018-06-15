@@ -10,28 +10,43 @@ class CarManager implements \App\I\IGet
     public const CAR_RESERVATION_TABLE = 'cars_reservation';
 
     /**
-     * Get spesified car
+     * Get specified car
      *
      */
-
     public function getOne($url) {
-        return dbRow("SELECT `id`, `url`, `title`, `description`, `name`, `content`, `foto` FROM `".self::CAR_TABLE."` WHERE `url` = ?", array($url));
+        $result = dbRow("SELECT `id`, `url`, `title`, `description`, `name`, `content`, `foto` FROM `".self::CAR_TABLE."` WHERE `url` = ?", array($url));
+        if ($result) {
+            $catalog = getConfig('files', self::CAR_TABLE, 'image', 'foto', 'dir');
+            if ($catalog && !empty($result['foto'])) {
+                $result['foto'] = 'files/image/'.$catalog.DIR_SEP.$result['foto'];
+            }
+        }
+        return $result;
     }
 
     /**
      * Get all cars
      *
      */
-
     public function getAll() {
-        return dbArray("SELECT `id`, `url`, `title`, `description`, `name`, `content`, `foto` FROM `".self::CAR_TABLE."` ORDER BY `id` DESC");
+        $results = dbArray("SELECT `id`, `url`, `title`, `description`, `name`, `content`, `foto` FROM `".self::CAR_TABLE."` ORDER BY `id` DESC");
+        if ($results) {
+            $catalog = getConfig('files', self::CAR_TABLE, 'image', 'foto', 'dir');
+            if ($catalog) {
+                foreach ($results as $key => $result) {
+                    if (!empty($result['foto'])) {
+                        $results[$key]['foto'] = 'files/image/'.$catalog.DIR_SEP.$result['foto'];
+                    }
+                }
+            }
+        }
+        return $results;
     }
 
     /**
      * Method to get car reservation information
      *
      */
-
     public function getReservations($carID, $userID = null, $deletable = false) {
         $select  = "SELECT u.`id` as `uid`, u.`name` as `uname`, c.`id` as `rid`, c.`date_from`, c.`date_to`";
         $from    = " FROM `".self::CAR_RESERVATION_TABLE."` c";
@@ -59,7 +74,6 @@ class CarManager implements \App\I\IGet
      * Method to set car reservation
      *
      */
-
     public function setReservation($carID, $userID, $dateFrom, $dateTo) {
         $dateFrom = new \App\M\Date($dateFrom);
         $dateTo = new \App\M\Date($dateTo);
@@ -79,7 +93,7 @@ class CarManager implements \App\I\IGet
                 }
 
                 if ($valid) {
-                    dbQuery("INSERT INTO `".self::CAR_RESERVATION_TABLE."` (`id_car`, `id_user`, `date_from`, `date_to`) VALUES (:id_car, :id_user, :date_from, :date_to)", array(
+                    return dbQuery("INSERT INTO `".self::CAR_RESERVATION_TABLE."` (`id_car`, `id_user`, `date_from`, `date_to`) VALUES (:id_car, :id_user, :date_from, :date_to)", array(
                         'id_car' => $carID,
                         'id_user' => $userID,
                         'date_from' => $dateFrom->date,
@@ -96,7 +110,6 @@ class CarManager implements \App\I\IGet
      * Method to delete car reservation
      *
      */
-
     public function removeReservation($resID, $userID) {
         if (dbOne("SELECT c.`id` FROM `".self::CAR_RESERVATION_TABLE."` c WHERE DATE(NOW()) < c.`date_from` AND c.`id` = ? AND c.`id_user` = ?", array($resID, $userID))) {
             return dbQuery("DELETE FROM `".self::CAR_RESERVATION_TABLE."` WHERE `id` = :id_res AND `id_user` = :id_user", array(

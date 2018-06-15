@@ -6,19 +6,22 @@ namespace App\C;
 
 class CarController extends \App\A\Controller
 {
-    private function processCar(&$parms, &$user) {
+    /**
+     *
+     *
+     */
+    private function processCar(&$parms, $user) {
         $carManager = new \App\M\CarManager();
+        $car = $carManager->getOne($parms[0]);
 
-        $this->data['car'] = $carManager->getOne($parms[0]);
-
-        if (!$this->data['car']) {
+        if (!$car) {
             $this->redirect('error');
         }
 
         # === #
 
         if (!empty($_POST['car-form']) && !empty($_POST['date']['from']) && !empty($_POST['date']['to'])) {
-            $result = $carManager->setReservation($this->data['car']['id'], $user->userID, $_POST['date']['from'], $_POST['date']['to']);
+            $result = $carManager->setReservation($car['id'], $user->userID, $_POST['date']['from'], $_POST['date']['to']);
             $this->redirect('car/'.$parms[0]);
         }
 
@@ -31,6 +34,7 @@ class CarController extends \App\A\Controller
 
         # === #
 
+        $this->data['car'] = $car;
         $this->data['reservations'] = $carManager->getReservations($this->data['car']['id'], null, true);
 
         $this->head['tile'] = $this->data['car']['title'];
@@ -39,10 +43,17 @@ class CarController extends \App\A\Controller
         $this->view = 'car';
     }
 
+    /**
+     *
+     *
+     */
     private function processCars() {
         $carManager = new \App\M\CarManager();
+        $cars = $carManager->getAll();
 
-        $this->data['cars'] = $carManager->getAll();
+        # === #
+
+        $this->data['cars'] = $cars;
 
         $this->head['title'] = 'Lista aut';
         $this->head['description'] = 'Lista dostępnych aut do wypożyczenia przez pracowników';
@@ -50,6 +61,10 @@ class CarController extends \App\A\Controller
         $this->view = 'cars';
     }
 
+    /**
+     *
+     *
+     */
     public function process($parms) {
         if (!($user = $this->isLogged())) {
             $this->redirect('user');

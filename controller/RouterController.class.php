@@ -8,6 +8,10 @@ class RouterController extends \App\A\Controller
 {
     protected $controller;
 
+    /**
+     *
+     *
+     */
     public function process($parms) {
         $parsedUrl = $this->parseUrl($parms['uri']);
 
@@ -27,6 +31,7 @@ class RouterController extends \App\A\Controller
             $this->redirect('error');
         }
 
+        // Start processing view logic
         $this->controller->process($parsedUrl);
 
         # === #
@@ -39,13 +44,12 @@ class RouterController extends \App\A\Controller
 
         # === #
 
-        #$this->data['core']['base'] = $this->controller->data['core']['base'] = $this->locationHost();
         $this->data['core']['host'] = $this->controller->data['core']['host'] = $this->locationHost();
         $this->data['core']['url']  = $this->controller->data['core']['url']  = $this->locationUrl();
         $this->data['core']['href'] = $this->controller->data['core']['href'] = $this->locationHref();
 
         $this->data['core']['user'] = $this->controller->data['core']['user'] = null;
-        if (($user = $this->isLogged())) {
+        if ($user = $this->isLogged()) {
             $this->data['core']['user']['id'] = $this->controller->data['core']['user']['id'] = $user->userID;
             $this->data['core']['user']['type'] = $this->controller->data['core']['user']['type'] = $user->userType;
             $this->data['core']['user']['information'] = $this->controller->data['core']['user']['information'] = $user->information();
@@ -55,6 +59,10 @@ class RouterController extends \App\A\Controller
         $this->view = 'index';
     }
 
+    /**
+     *
+     *
+     */
     private function parseUrl($url) {
         $parsedUrl = parse_url($url);
         $parsedUrl['path'] = trim(ltrim($parsedUrl['path'], '/'));
@@ -62,6 +70,10 @@ class RouterController extends \App\A\Controller
         return array_filter(explode('/', $parsedUrl['path']));
     }
 
+    /**
+     *
+     *
+     */
     private function dashesToCamel($text) {
         $text = str_replace('-', ' ', $text);
         $text = ucwords($text);

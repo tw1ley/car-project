@@ -10,8 +10,7 @@ class AdminController extends \App\A\Controller
      *
      *
      */
-
-    public function processHome() {
+    private function processHome() {
         $this->head['title'] = 'Panel administratora';
         $this->head['description'] = 'Panel administratora';
         $this->view = 'home';
@@ -21,15 +20,15 @@ class AdminController extends \App\A\Controller
      *
      *
      */
-
-    public function processUser() {
+    private function processUser() {
         if (!empty($_GET['edit'])) {
             $this->data['post']['user']['add'] = dbRow("SELECT * FROM `user` WHERE `id` = ".(int) $_GET['edit']);
         }
 
         if (!empty($_GET['delete'])) {
-            dbQuery("DELETE FROM `user` WHERE `id` = ".(int) $_GET['delete']);
-            dbQuery("DELETE FROM `car_reservation` WHERE `id_user` = ".(int) $_GET['delete']);
+            if (dbQuery("DELETE FROM `user` WHERE `type` = 0 AND `id` = ".(int) $_GET['delete']) > 0) {
+                dbQuery("DELETE FROM `cars_reservation` WHERE `id_user` = ".(int) $_GET['delete']);
+            }
             $this->redirect('admin/user');
         }
 
@@ -70,8 +69,7 @@ class AdminController extends \App\A\Controller
      *
      *
      */
-
-    public function processArticle() {
+    private function processArticle() {
         if (!empty($_GET['edit'])) {
             $this->data['post']['article']['add'] = dbRow("SELECT * FROM `article` WHERE `id` = ".(int) $_GET['edit']);
         }
@@ -114,20 +112,26 @@ class AdminController extends \App\A\Controller
      *
      *
      */
-
-    public function processCar() {
+    private function processCar() {
         if (!empty($_GET['edit'])) {
             $this->data['post']['car']['add'] = dbRow("SELECT * FROM `cars` WHERE `id` = ".(int) $_GET['edit']);
         }
 
         if (!empty($_GET['delete'])) {
-            dbQuery("DELETE FROM `cars` WHERE `id` = ".(int) $_GET['delete']);
+            if (dbQuery("DELETE FROM `cars` WHERE `id` = ".(int) $_GET['delete']) > 0) {
+                dbQuery("DELETE FROM `cars_reservation` WHERE `id_car` = ".(int) $_GET['delete']);
+            }
             $this->redirect('admin/car');
+        }
+
+        if (!empty($_GET['foto_delete'])) {
+            \App\M\File::deleteFoto('cars', 'foto', $_GET['foto_delete']);
+            $this->redirect('admin/car?edit='.$_GET['foto_delete']);
         }
 
         if (!empty($_POST['car']['add']) && !empty($_POST['car']['form'])) {
             if (!empty($_POST['car']['add']['id'])) {
-                dbQuery("UPDATE `cars` SET `url` = :url, `title` = :titile, `description` = :description, `name` = :name, `content` = :content WHERE `id` = :id", array(
+                dbQuery("UPDATE `cars` SET `url` = :url, `title` = :title, `description` = :description, `name` = :name, `content` = :content WHERE `id` = :id", array(
                     'url' => $_POST['car']['add']['url'],
                     'title' => $_POST['car']['add']['title'],
                     'description' => $_POST['car']['add']['description'],
@@ -135,6 +139,9 @@ class AdminController extends \App\A\Controller
                     'content' => $_POST['car']['add']['content'],
                     'id' => $_POST['car']['add']['id']
                 ));
+                if (\App\M\File::uploadFoto('cars', 'foto', $_POST['car']['add']['id'])) {
+                    $this->redirect('admin/car?edit='.$_POST['car']['add']['id']);
+                }
             } else {
                 dbQuery("INSERT INTO `cars` (`url`, `title`, `description`, `name`, `content`) VALUES (:url, :title, :description, :name, :content)", array(
                     'url' => $_POST['car']['add']['url'],
@@ -156,7 +163,6 @@ class AdminController extends \App\A\Controller
      *
      *
      */
-
     public function process($parms) {
         if (!($user = $this->isAuth())) {
             $this->redirect('error');

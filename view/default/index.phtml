@@ -27,6 +27,12 @@
       <div>
         <a href="user" class="loginform-button" >PANEL UŻYTKOWNIKA</a>
       </div>
+        <? if (!empty($core['user']['type']) && $core['user']['type'] > 0) { ?>
+            <div>
+                <a href="admin" class="loginform-button" >PANEL ADMINISTRATORA</a>
+            </div>
+        <? } ?>
+      </div>
     </div>
 
 
@@ -45,7 +51,7 @@
                             }
                         }
                     ?>
-                    <li><a href="user/profile">PANEL UŻYTKOWNIKA</a></li>
+                    <li><a href="user">PANEL UŻYTKOWNIKA</a></li>
                 </ul>
             </div>
       </nav>

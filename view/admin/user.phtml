@@ -29,9 +29,10 @@
                             } else {
                                 echo '<a href="user?edit='.$user['id'].'" >Edytuj</a>';
                             }
+                            if ($user['type'] == 0) {
+                                echo '<br/><a href="user?delete='.$user['id'].'" >Usuń</a>';
+                            }
                         ?>
-                        <br/>
-                        <a href="user?delete=<?=$user['id'];?>" >Usuń</a>
                     </td>
                 </tr>
             <? } ?>
@@ -110,6 +111,3 @@
         </tr>
     </table>
 </form>
-<script>
-   CKEDITOR.replace('textarea');
-</script>

@@ -32,11 +32,11 @@
             ?>
                 <div class="product_listing">
                   <div class="product_listing_img">
-                    <img src="assets/img/listing_car.jpg" alt="image">
+                      <img src="<?=$car['foto'] ? $car['foto'] : 'assets/img/listing_car.jpg';?>" alt="image">
                   </div>
                   <div class="product_listing_content">
                     <h4><?=$car['name'];?></h4>
-                    <a href="<?=$core['url'].$car['url'];?>" class="btn">Zobacz więcej <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                    <a href="<?=$core['url'].'/'.$car['url'];?>" class="btn">Zobacz więcej <i class="fa fa-angle-right" aria-hidden="true"></i></a>
                   </div>
                 </div>
             <?

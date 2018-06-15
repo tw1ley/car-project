@@ -99,7 +99,6 @@ class UserManager
      * Get all information from database
      *
      */
-
      public function information() {
          if ($this->logged()) {
              return dbRow("SELECT `name`, `surname`, `email`, `phone`, `city`, `description` FROM `".self::USER_TABLE."` WHERE `id` = ".$this->userID);
