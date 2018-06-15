@@ -15,8 +15,16 @@ abstract class Controller
         'description' => ''
     );
 
-    abstract function process($parms);
+    /**
+     *
+     *
+     */
+    abstract public function process($parms);
 
+    /**
+     *
+     *
+     */
     public function renderView() {
         if ($this->view) {
             // Escape variables
@@ -28,12 +36,20 @@ abstract class Controller
         }
     }
 
-    public function redirect($url) {
+    /**
+     *
+     *
+     */
+    protected function redirect($url) {
         header("Location: /".$url);
         header("Connection: close");
         exit;
     }
 
+    /**
+     *
+     *
+     */
     private function protect($v = null) {
         if (!isset($v)) {
             return null;
@@ -49,28 +65,48 @@ abstract class Controller
         }
     }
 
-    public function isLogged() {
+    /**
+     *
+     *
+     */
+    protected function isLogged() {
         $user = new \App\M\UserManager();
         return $user->logged() ? $user : null;
     }
 
-    public function isAuth() {
+    /**
+     *
+     *
+     */
+    protected function isAuth() {
         if ($user = $this->isLogged()) {
             return $user->userType == 1 ? $user : null;
         }
         return null;
     }
 
+    /**
+     *
+     *
+     */
     protected function locationHost() {
         return (!empty($_SERVER['HTTPS']) ? 'https://' : 'http://').rtrim($_SERVER['HTTP_HOST'], '/').'/';
     }
 
+    /**
+     *
+     *
+     */
     protected function locationUrl() {
-        return rtrim(rtrim($this->locationHost(), '/').explode('?', $_SERVER['REQUEST_URI'])[0], '/').'/';
+        return rtrim(rtrim($this->locationHost(), '/').explode('?', $_SERVER['REQUEST_URI'])[0], '/');
     }
 
+    /**
+     *
+     *
+     */
     protected function locationHref() {
         $explode = explode('?', $_SERVER['REQUEST_URI'])[1];
-        return $explode ? $explode : '';
+        return $explode ? '?'.$explode : '';
     }
 }

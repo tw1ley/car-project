@@ -9,6 +9,10 @@ class DateRange implements \App\I\IDateRange
     private $dateFrom = null;
     private $dateTo = null;
 
+    /**
+     *
+     *
+     */
     public function __construct(\App\M\Date $dateFrom, \App\M\Date $dateTo) {
         if (!$dateFrom->isNull() && !$dateTo->isNull() && $dateFrom->isAtLeastEqual($dateTo)) {
             $this->dateFrom = $dateFrom;
@@ -16,17 +20,11 @@ class DateRange implements \App\I\IDateRange
         }
     }
 
+    /**
+     *
+     *
+     */
     public function compareRange(\App\M\DateRange $range) {
-        #debug($range->dateFrom->time .' | '. $this->dateFrom->time);
-        #debug($range->dateTo->time   .' | '. $this->dateFrom->time);
-        #debug($range->dateFrom->time .' | '. $this->dateTo->time);
-        #debug($range->dateTo->time   .' | '. $this->dateTo->time);
-
-        #debug(($range->dateFrom->time < $this->dateFrom->time && $range->dateTo->time < $this->dateFrom->time));
-        #debug(($range->dateFrom->time > $this->dateTo->time && $range->dateTo->time > $this->dateTo->time));
-
-        #die();
-
         return (($range->dateFrom->time < $this->dateFrom->time && $range->dateTo->time < $this->dateFrom->time) ||
                 ($range->dateFrom->time > $this->dateTo->time && $range->dateTo->time > $this->dateTo->time));
     }
