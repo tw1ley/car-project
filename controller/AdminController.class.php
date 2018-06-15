@@ -124,9 +124,14 @@ class AdminController extends \App\A\Controller
             $this->redirect('admin/car');
         }
 
+        if (!empty($_GET['foto_delete'])) {
+            \App\M\File::deleteFoto('cars', 'foto', $_GET['foto_delete']);
+            $this->redirect('admin/car?edit='.$_GET['foto_delete']);
+        }
+
         if (!empty($_POST['car']['add']) && !empty($_POST['car']['form'])) {
             if (!empty($_POST['car']['add']['id'])) {
-                dbQuery("UPDATE `cars` SET `url` = :url, `title` = :titile, `description` = :description, `name` = :name, `content` = :content WHERE `id` = :id", array(
+                dbQuery("UPDATE `cars` SET `url` = :url, `title` = :title, `description` = :description, `name` = :name, `content` = :content WHERE `id` = :id", array(
                     'url' => $_POST['car']['add']['url'],
                     'title' => $_POST['car']['add']['title'],
                     'description' => $_POST['car']['add']['description'],
@@ -134,6 +139,9 @@ class AdminController extends \App\A\Controller
                     'content' => $_POST['car']['add']['content'],
                     'id' => $_POST['car']['add']['id']
                 ));
+                if (\App\M\File::uploadFoto('cars', 'foto', $_POST['car']['add']['id'])) {
+                    $this->redirect('admin/car?edit='.$_POST['car']['add']['id']);
+                }
             } else {
                 dbQuery("INSERT INTO `cars` (`url`, `title`, `description`, `name`, `content`) VALUES (:url, :title, :description, :name, :content)", array(
                     'url' => $_POST['car']['add']['url'],

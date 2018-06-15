@@ -32,7 +32,7 @@
             ?>
                 <div class="product_listing">
                   <div class="product_listing_img">
-                    <img src="assets/img/listing_car.jpg" alt="image">
+                      <img src="<?=$car['foto'] ? $car['foto'] : 'assets/img/listing_car.jpg';?>" alt="image">
                   </div>
                   <div class="product_listing_content">
                     <h4><?=$car['name'];?></h4>

@@ -14,7 +14,14 @@ class CarManager implements \App\I\IGet
      *
      */
     public function getOne($url) {
-        return dbRow("SELECT `id`, `url`, `title`, `description`, `name`, `content`, `foto` FROM `".self::CAR_TABLE."` WHERE `url` = ?", array($url));
+        $result = dbRow("SELECT `id`, `url`, `title`, `description`, `name`, `content`, `foto` FROM `".self::CAR_TABLE."` WHERE `url` = ?", array($url));
+        if ($result) {
+            $catalog = getConfig('files', self::CAR_TABLE, 'image', 'foto', 'dir');
+            if ($catalog && !empty($result['foto'])) {
+                $result['foto'] = 'files/image/'.$catalog.DIR_SEP.$result['foto'];
+            }
+        }
+        return $result;
     }
 
     /**
@@ -22,7 +29,18 @@ class CarManager implements \App\I\IGet
      *
      */
     public function getAll() {
-        return dbArray("SELECT `id`, `url`, `title`, `description`, `name`, `content`, `foto` FROM `".self::CAR_TABLE."` ORDER BY `id` DESC");
+        $results = dbArray("SELECT `id`, `url`, `title`, `description`, `name`, `content`, `foto` FROM `".self::CAR_TABLE."` ORDER BY `id` DESC");
+        if ($results) {
+            $catalog = getConfig('files', self::CAR_TABLE, 'image', 'foto', 'dir');
+            if ($catalog) {
+                foreach ($results as $key => $result) {
+                    if (!empty($result['foto'])) {
+                        $results[$key]['foto'] = 'files/image/'.$catalog.DIR_SEP.$result['foto'];
+                    }
+                }
+            }
+        }
+        return $results;
     }
 
     /**
