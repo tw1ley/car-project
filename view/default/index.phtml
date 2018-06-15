@@ -27,6 +27,12 @@
       <div>
         <a href="user" class="loginform-button" >PANEL UŻYTKOWNIKA</a>
       </div>
+        <? if (!empty($core['user']['type']) && $core['user']['type'] > 0) { ?>
+            <div>
+                <a href="admin" class="loginform-button" >PANEL ADMINISTATORA</a>
+            </div>
+        <? } ?>
+      </div>
     </div>
 
 
