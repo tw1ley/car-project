@@ -1,0 +1,6 @@
+/files/*
+!/files/index.html
+/files/image/*
+!/files/image/index.html
+/files/image/cars/*
+!/files/image/cars/index.html
