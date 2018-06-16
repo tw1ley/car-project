@@ -261,9 +261,6 @@ img::selection {
 img::-moz-selection {
   background: transparent; }
 
-body {
-  -webkit-tap-highlight-color: #FFF498; }
-
 .gigantic, .huge, .large, .bigger, .big,
 h1, h2, h3, h4, h5, h6 {
   color: #222;
@@ -346,14 +343,16 @@ header {
 .loginform-button {
   color: #fff;
   display: block;
-  background: black;
-  padding: 16px 26px;
-  line-height: 30px;
+  background: rgba(0, 0, 0, 0.7);
+  margin: 6px 3px 0 0;
+  padding: 10px 20px;
+  border-radius: 15px;
+  line-height: 26px;
   font-weight: bold; }
   .loginform-button:hover {
     color: #D91414; }
 
-nav:not(.datepicker--nav) {
+nav {
   position: fixed;
   width: 100%;
   line-height: 30px;
@@ -379,7 +378,7 @@ nav.black ul {
 
 nav ul li {
   display: inline-block;
-  padding: 10px 35px; }
+  padding: 10px 22px; }
 
 nav ul li:last-child {
   visibility: hidden; }
@@ -455,6 +454,8 @@ a:hover::after {
     width: 100%;
     padding: 24px;
     text-align: center; }
+  nav ul li a {
+    left: 20px; }
   nav ul li:last-child {
     visibility: visible; }
   .menu-icon {
@@ -553,10 +554,16 @@ a:hover::after {
         -ms-grid-row: 2; } }
   #brands ul li {
     list-style: none;
-    text-align: center; }
+    text-align: center;
+    position: relative;
+    height: 90px; }
   #brands ul li img {
-    max-width: 100px;
-    width: 100%; }
+    width: 100px;
+    max-width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); }
 
 #features {
   background: #f9f9f9;
@@ -620,6 +627,10 @@ a:hover::after {
     font-size: 18px;
     transition: .4s;
     margin-bottom: 5px; }
+    @media only screen and (max-width: 600px) {
+      .our-offer-wrapper button.our-offer-box {
+        font-size: 16px;
+        width: 80%; } }
   .our-offer-wrapper button:focus {
     outline: none; }
   .our-offer-wrapper button.our-offer-box.active, .our-offer-wrapper button.our-offer-box:hover {
@@ -689,19 +700,20 @@ a:hover::after {
 #contact {
   background: #263F8C;
   text-align: center;
-  padding: 50px 0;
-  width: 100%; }
+  padding: 30px 0; }
   #contact h3 {
     color: #fff; }
     @media only screen and (max-width: 600px) {
       #contact h3 {
-        font-size: 18px; } }
+        font-size: 16px; } }
   #contact a {
     color: #fff;
     background: #263F8C;
-    margin: 8px 0 8px 30px;
+    margin: 8px 30px 8px 30px;
     padding: 10px 30px;
     border: 2px solid #fff;
+    display: block;
+    max-width: 100%;
     border-radius: 2px;
     transition: all 0.2s ease-in-out; }
     #contact a:hover {
@@ -1107,6 +1119,14 @@ footer {
     #contact-page .inputField button:hover {
       color: #fff;
       background-color: #263F8C; }
+
+#page .content {
+  width: 900px;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 40px 20px; }
+  #page .content h3 {
+    margin-left: 20px; }
 
 .flex-video {
   height: 0;
