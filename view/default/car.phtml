@@ -27,6 +27,20 @@
       </div>
       <div class="content" >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ipsum nisl, malesuada non est et, aliquam pulvinar risus. Donec eros lectus, egestas dapibus sagittis tempor, tincidunt vitae ex. Sed sodales, nulla a tempus placerat, massa mauris congue quam, et dapibus arcu mauris in massa. Nam cursus, sem ac semper accumsan, leo nisi bibendum tellus, eu venenatis neque tellus eget justo. Fusce ut odio rhoncus, tincidunt eros quis, posuere leo. In a tincidunt nisl, sit amet auctor justo. Morbi imperdiet congue dui quis dapibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Maecenas congue scelerisque enim vitae blandit. Sed ut placerat mi. Maecenas blandit arcu eget scelerisque vulputate. Nam neque risus, condimentum quis nisl non, dictum auctor tellus. Mauris condimentum ipsum velit, sed sodales est aliquam egestas. Etiam in condimentum tortor. Curabitur volutpat mauris in pellentesque luctus. Maecenas tempus mauris a turpis euismod facilisis.</div>
     </div>
+    <?
+        if (!empty($info)) {
+            echo '<div class="info">';
+            switch ($info) {
+                case 'reserved' : {
+                    echo '<span class="green"><h3>POJAZD ZOSTAŁ ZAREZERWOWANY</h3></span>';
+                } break;
+                case 'not-reserved' : {
+                    echo '<span class="red"><h3>POJAZD NIE ZOSTAŁ ZAREZERWOWANY<br/>SPRÓBUJ PONOWNIE</h3></span>';
+                }
+            }
+            echo '</div>';
+        }
+    ?>
     <? if(!empty($reservations)) { ?>
         <div>
             <div class="reserve-table">

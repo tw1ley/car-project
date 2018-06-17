@@ -786,6 +786,9 @@ footer {
         max-width: 100%;
         background-size: cover;
         margin: 10px 0 0 10px; }
+        @media only screen and (max-width: 550px) {
+          #listing_page .cars_container .product_listing .product_listing_img img {
+            width: 330px; } }
       #listing_page .cars_container .product_listing .product_listing_content {
         padding: 20px 80px 0;
         margin: 0 auto;
@@ -986,6 +989,7 @@ footer {
     font-weight: bold;
     font-size: 16px;
     line-height: 32px;
+    max-width: 100%;
     color: #fff;
     background-color: #50c1eb;
     display: block;
@@ -1037,10 +1041,41 @@ footer {
   padding: 5px; }
 
 #car_details .dp-od {
-  padding: 5px 20px; }
+  padding: 5px 15px;
+  max-width: 100%; }
 
 #car_details .dp-do {
-  padding: 5px 20px; }
+  padding: 5px 15px;
+  max-width: 100%; }
+
+#car_details .info h3 {
+  text-align: center;
+  margin: 6px 40px;
+  color: white; }
+
+#car_details .info span.red {
+  display: block;
+  max-width: 100%;
+  margin: 40px auto;
+  font-weight: bold;
+  width: 600px;
+  padding: 4px 20px;
+  border: 2px solid #fff;
+  border-radius: 15px;
+  background: #F21414;
+  transition: all 0.2s ease-in-out; }
+
+#car_details .info span.green {
+  display: block;
+  max-width: 100%;
+  margin: 40px auto;
+  font-weight: bold;
+  width: 600px;
+  padding: 4px 20px;
+  border: 2px solid #fff;
+  border-radius: 15px;
+  background: #31B016;
+  transition: all 0.2s ease-in-out; }
 
 ::-webkit-scrollbar {
   width: 6px; }
