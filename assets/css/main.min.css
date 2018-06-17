@@ -352,7 +352,7 @@ header {
   .loginform-button:hover {
     color: #D91414; }
 
-nav {
+nav:not(.datepicker--nav) {
   position: fixed;
   width: 100%;
   line-height: 30px;
@@ -393,7 +393,7 @@ nav ul li a {
   font-weight: bold;
   text-transform: uppercase; }
 
-a::after, a::before {
+nav ul li a::after, a::before {
   height: 14px;
   width: 14px;
   position: absolute;
@@ -401,22 +401,22 @@ a::after, a::before {
   transition: all 0.35s ease;
   opacity: 0; }
 
-a::before {
+nav ul li a::before {
   right: 0;
   top: 0;
   border-right: 3px solid red;
   border-top: 3px solid red;
   transform: translate(-100%, 50%); }
 
-a::after {
+nav ul li a::after {
   left: 0;
   bottom: 0;
   border-left: 3px solid red;
   border-bottom: 3px solid red;
   transform: translate(100%, -50%); }
 
-a:hover::before,
-a:hover::after {
+nav ul li a:hover::before,
+nav ul li a:hover::after {
   transform: translate(0%, 0%);
   opacity: 1; }
 
